@@ -21,6 +21,9 @@
 ```bash
 npm install random-text-generator
 ```
+```js
+const createRandomTextGenerator=require("random-text-generator");
+``
 
 ## Getting Started
 eloeol
