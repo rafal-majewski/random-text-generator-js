@@ -1,12 +1,12 @@
 # random-text-generator-js
 
 - [Obtaining](#obtaining)
-- [Getting Started](gettingStarted)
+- [Getting Started](getting-started)
 - [Functions](#functions)
-	- [learnExample](#learnExample)
-	- [learnExamples](#learnExamples)
-	- [forgetExample](#forgetExample)
-	- [forgetExamples](#forgetExamples)
+	- [learnExample](#learn-example)
+	- [learnExamples](#learn-examples)
+	- [forgetExample](#forget-example)
+	- [forgetExamples](#forget-examples)
 	- [generate](#generate)
 	- [lengthen](#lengthen)
 	- [shrink](#shrink)
