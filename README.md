@@ -1,7 +1,7 @@
 # random-text-generator-js
 
 - [Obtaining](#obtaining)
-- [Getting Started](#gettingStarted)
+- [Getting Started](#Getting Started)
 - [Functions](#functions)
 	- [learnExample](#learnExample)
 	- [learnExamples](#learnExamples)
@@ -13,7 +13,9 @@
 
 ## Obtaining
 ### HTML
+```html
 <script src="https://raw.githubusercontent.com/Rafal-Majewski/random-text-generator-js/master/random_text_generator.js"></script>
+```
 
 ### node.js
 ```bash
