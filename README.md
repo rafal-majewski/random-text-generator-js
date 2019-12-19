@@ -1,7 +1,7 @@
 # random-text-generator-js
 
 - [Obtaining](#obtaining)
-- [Getting Started](#Getting Started)
+- [Getting Started](gettingStarted)
 - [Functions](#functions)
 	- [learnExample](#learnExample)
 	- [learnExamples](#learnExamples)
