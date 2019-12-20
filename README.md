@@ -26,7 +26,17 @@ const createRandomTextGenerator=require("random-text-generator");
 ```
 
 ## Getting Started
-eloeol
+```js
+let settings={
+	weights: {},
+	deepness: 40,
+	trust: 2,
+	limit: 400,
+	startingCharacter: String.fromCharCode(2),
+	endingCharacter: String.fromCharCode(3),
+};
+let randomTextGenerator=createRandomTextGenerator(settings);
+```
 
 ## Functions
 ### learnExample
