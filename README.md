@@ -5,6 +5,8 @@ What the generator does is basically remembering what characters can come after 
 
 Throughout the documentation I will be saying that the generator generates `words` that are made out of `characters` but don't worry if you want to generate texts, just put words instead of characters and you will get sentences 😉.
 
+Note: Generated words in some examples may look odd, that's because of not sufficient amout of learning data. The more learning data you provide the better the results.
+
 - [Obtaining](#obtaining)
 - [How does it work](#how-does-it-work)
 - [Getting Started](#getting-started)
@@ -15,7 +17,12 @@ Throughout the documentation I will be saying that the generator generates `word
 	- [forgetExamples](#forget-examples)
 	- [generate](#generate)
 	- [lengthen](#lengthen)
+	- [predictCharacter](#predict-character)
 	- [shrink](#shrink)
+	- [saveToJson](#save-to-json)
+	- [loadFromJson](#load-from-json)
+	- [saveWeightsToJson](#save-weights-to-json)
+	- [loadWeightsFromJson](#load-weights-from-json)
 
 ## Obtaining
 ### HTML
@@ -52,8 +59,9 @@ Teaches the generator a new word.
 ```js
 randomTextGenerator.learnExample(example, isRaw);
 ```
-```example``` - **array** of **string**s
+```example``` - **array** of **string**s<br/>
 ```isRaw``` - *optional*, **boolean**, by default `false`. If `true` the input is not treated like a word, but like a part of a word.
+Returns **nothing**.
 #### Example
 ```js
 randomTextGenerator.learnExample("Mark".split(""));
@@ -79,14 +87,16 @@ for (let i=0; i<12; ++i) {
 // Bob
 // Bohnrk
 ```
+
 ### learnExamples
 Runs [learnExample](#learn-example) for every given example.
 #### Syntax
 ```js
 randomTextGenerator.learnExamples(examples, isRaw);
 ```
-```examples``` - **array** of **array** of **string**s
+```examples``` - **array** of **array** of **string**s<br/>
 ```isRaw``` - *optional*, **boolean**, by default `false`. If `true` the input is not treated like a word, but like a part of a word.
+Returns **nothing**.
 
 ### forgetExample
 Makes the generator forget an example.
@@ -94,7 +104,7 @@ Makes the generator forget an example.
 ```js
 randomTextGenerator.forgetExample(example, isRaw);
 ```
-```example``` - **array** of **string**s
+```example``` - **array** of **string**s<br/>
 ```isRaw``` - *optional*, **boolean**, by default `false`. If `true` the input is not treated like a word, but like a part of a word.
 #### Example
 ```js
@@ -128,4 +138,75 @@ for (let i=0; i<6; ++i) {
 // Auston
 // Bon
 // Bostostostostoston
+```
+
+###  forgetExamples
+Runs [forgetExample](#forget-example) for every given example.
+#### Syntax
+```js
+randomTextGenerator.forgetExamples(examples, isRaw);
+```
+```examples``` - **array** of **array** of **string**s<br/>
+```isRaw``` - *optional*, **boolean**, by default `false`. If `true` the input is not treated like a word, but like a part of a word.
+Returns **nothing**.
+
+### generate
+Generates a word.
+#### Syntax
+```js
+randomTextGenerator.generate();
+```
+Returns **array** of **string**s.
+#### Example
+```js
+let presidents=["Trmup", "Obama", "Bush", "Clinton", "Bush", "Reagan", "Carter"];
+for (let president of presidents) randomTextGenerator.learnExample(president.split(""));
+
+for (let i=0; i<12; ++i) {
+	let name=randomTextGenerator.generate().join("");
+	console.log(name);
+}
+// Rea
+// Canteamush
+// Trmup
+// Rerton
+// Reagan
+// Bush
+// Tr
+// Obantonton
+// Clin
+// Rea
+// Obagamagamarmaga
+// Clin
+```
+
+### lengthen
+Similar to [generate](#generate), but you can set the beginning.
+#### Syntax
+```js
+randomTextGenerator.lengthen(splittedWord);
+```
+```splittedWord``` - **array** of **string**s<br/>
+Returns **array** of **string**s.
+#### Example
+```js
+let presidents=["Trmup", "Obama", "Bush", "Clinton", "Bush", "Reagan", "Carter"];
+for (let president of presidents) randomTextGenerator.learnExample(president.split(""));
+
+for (let i=0; i<12; ++i) {
+	let name=randomTextGenerator.lengthen("Ob").join("");
+	console.log(name);
+}
+// Oban
+// Obar
+// Obartermush
+// Obanton
+// Obarmamush
+// Oban
+// Oban
+// Obar
+// Obama
+// Obamagar
+// Oban
+// Obagagarton
 ```

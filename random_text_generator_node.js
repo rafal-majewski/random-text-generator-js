@@ -34,7 +34,7 @@ createRandomTextGenerator=(settings)=>{
 	randomTextGenerator.learnExamples=(examples, isRaw)=>{
 		for (let example of examples) randomTextGenerator.learnExample(example, isRaw);
 	};
-	randomTextGenerator.predictNext=(splittedText)=>{
+	randomTextGenerator.predictCharacter=(splittedText)=>{
 		let from=splittedText.slice(Math.max(0, splittedText.length-randomTextGenerator.deepness));
 		for (let i=0; i<randomTextGenerator.deepness; ++i) {
 			let weightsRow=randomTextGenerator.weights[from.join(randomTextGenerator.splitter)];
@@ -66,12 +66,11 @@ createRandomTextGenerator=(settings)=>{
 			from=from.slice(1);
 		}
 	};
-	randomTextGenerator.generate=(breakFunction)=>{
+	randomTextGenerator.generate=()=>{
 		let splittedText=[randomTextGenerator.startingCharacter];
 		while (true) {
-			let character=randomTextGenerator.predictNext(splittedText);
+			let character=randomTextGenerator.predictCharacter(splittedText);
 			if (character === randomTextGenerator.endingCharacter) break;
-			if (breakFunction && breakFunction(splittedText, character)) break;
 			if (!character || splittedText.length > randomTextGenerator.limit) {
 				splittedText=[randomTextGenerator.startingCharacter];
 				continue;
@@ -80,12 +79,11 @@ createRandomTextGenerator=(settings)=>{
 		}
 		return splittedText.slice(1);
 	};
-	randomTextGenerator.lengthen=(splittedText, breakFunction)=>{
+	randomTextGenerator.lengthen=(splittedText)=>{
 		let newSplittedText=[...splittedText];
 		while (true) {
-			let character=randomTextGenerator.predictNext(newSplittedText);
+			let character=randomTextGenerator.predictCharacter(newSplittedText);
 			if (character === randomTextGenerator.endingCharacter) break;
-			if (breakFunction && breakFunction(newSplittedText, character)) break;
 			if (!character || newSplittedText.length > randomTextGenerator.limit) {
 				newSplittedText=[...splittedText];
 				continue;
@@ -102,5 +100,10 @@ createRandomTextGenerator=(settings)=>{
 			if (sum < randomTextGenerator.trust) delete randomTextGenerator.weights[from];
 		}
 	};
+	randomTextGenerator.saveToJson=()=>(JSON.stringify(randomTextGenerator));
+	randomTextGenerator.loadFromJson=(json)=>{randomTextGenerator={...JSON.parse(json), ...randomTextGenerator}};
+	randomTextGenerator.saveWeightsToJson=()=>(JSON.stringify(randomTextGenerator.weights));
+	randomTextGenerator.loadWeightsFromJson=(json)=>{randomTextGenerator.weights=JSON.parse(json)};
 	return randomTextGenerator;
+	
 };
