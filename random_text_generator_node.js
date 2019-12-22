@@ -104,5 +104,3 @@ createRandomTextGenerator=(settings)=>{
 	};
 	return randomTextGenerator;
 };
-
-module.exports=createRandomTextGenerator;
