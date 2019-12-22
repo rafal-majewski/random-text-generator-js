@@ -3,7 +3,7 @@ With this generator you can generate random names and words that resemble anythi
 
 What the generator does is basically remembering what characters can come after another. While generating it creates and empty string and predicts new characters in a loop.
 
-Throughout the documentation I will be saying that the generator generates `words` that are made out of `characters` but don't worry if you want to generate texts, just put words instead of characters and you will get sentences ;).
+Throughout the documentation I will be saying that the generator generates `words` that are made out of `characters` but don't worry if you want to generate texts, just put words instead of characters and you will get sentences 😉.
 
 - [Obtaining](#obtaining)
 - [How does it work](#how-does-it-work)
@@ -47,6 +47,85 @@ let randomTextGenerator=createRandomTextGenerator(settings);
 
 ## Functions
 ### learnExample
-elo
+Teaches the generator a new word.
+#### Syntax
+```js
+randomTextGenerator.learnExample(example, isRaw);
+```
+```example``` - **array** of **string**s
+```isRaw``` - *optional*, **boolean**, by default `false`. If `true` the input is not treated like a word, but like a part of a word.
+#### Example
+```js
+randomTextGenerator.learnExample("Mark".split(""));
+randomTextGenerator.learnExample("Henry".split(""));
+randomTextGenerator.learnExample("Bob".split(""));
+randomTextGenerator.learnExample("John".split(""));
+randomTextGenerator.learnExample("David".split(""));
+
+for (let i=0; i<12; ++i) {
+	let name=randomTextGenerator.generate().join("");
+	console.log(name);
+}
+// Mark
+// Mavid
+// Mavid
+// Mark
+// Job
+// Mary
+// Job
+// Dark
+// Dary
+// Job
+// Bob
+// Bohnrk
+```
 ### learnExamples
-kuppo
+Runs [learnExample](#learn-example) for every given example.
+#### Syntax
+```js
+randomTextGenerator.learnExamples(examples, isRaw);
+```
+```examples``` - **array** of **array** of **string**s
+```isRaw``` - *optional*, **boolean**, by default `false`. If `true` the input is not treated like a word, but like a part of a word.
+
+### forgetExample
+Makes the generator forget an example.
+#### Syntax
+```js
+randomTextGenerator.forgetExample(example, isRaw);
+```
+```example``` - **array** of **string**s
+```isRaw``` - *optional*, **boolean**, by default `false`. If `true` the input is not treated like a word, but like a part of a word.
+#### Example
+```js
+randomTextGenerator.learnExample("Dallas".split(""));
+randomTextGenerator.learnExample("Austin".split(""));
+randomTextGenerator.learnExample("Chicago".split(""));
+randomTextGenerator.learnExample("Seattle".split(""));
+randomTextGenerator.learnExample("Denver".split(""));
+randomTextGenerator.learnExample("Boston".split(""));
+
+for (let i=0; i<6; ++i) {
+	let name=randomTextGenerator.generate().join("");
+	console.log(name);
+}
+// Chin
+// Chicaler
+// Der
+// Chinver
+// Seagostin
+// Das
+randomTextGenerator.forgetExample("Dallas".split(""));
+randomTextGenerator.forgetExample("Chicago".split(""));
+randomTextGenerator.forgetExample("Denver".split(""));
+for (let i=0; i<6; ++i) {
+	let name=randomTextGenerator.generate().join("");
+	console.log(name);
+}
+// Austin
+// Boston
+// Se
+// Auston
+// Bon
+// Bostostostostoston
+```
