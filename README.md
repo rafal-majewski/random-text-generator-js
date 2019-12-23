@@ -20,6 +20,7 @@ Throughout the documentation I will be saying that the generator generates `word
 
 Note: Generated words in some examples may look odd, that's because of not sufficient amout of learning data. The more learning data you provide the better the results.
 
+- [License](#License)
 - [Obtaining](#obtaining)
 - [Getting Started](#getting-started)
 - [Functions](#functions)
@@ -41,6 +42,9 @@ Note: Generated words in some examples may look odd, that's because of not suffi
 	- [Generating texts](#examples-texts)
 		- [English Lorem Ipsum](#english-lorem-ipsum)
 - [Data](#data)
+
+## License
+Do what you want.
 
 ## Obtaining
 ### HTML

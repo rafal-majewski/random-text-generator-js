@@ -1,6 +1,6 @@
 {
 	"name": "random-text-generator",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "- [Obtaining](#obtaining)\r - [Getting Started](#getting-started)\r - [Functions](#functions)\r \t- [learnExample](#learn-example)\r \t- [learnExamples](#learn-examples)\r \t- [forgetExample](#forget-example)\r \t- [forgetExamples](#forget-examples)\r \t- [generate](#generate)\r \t- [lengthen](#lengthen)\r \t- [shrink](#shrink)",
 	"main": "random_text_generator_node.js",
 	"scripts": {
@@ -11,7 +11,7 @@
 		"url": "git+https://github.com/Rafal-Majewski/random-text-generator-js.git"
 	},
 	"author": "Rafał Majewski",
-	"license": "UNLICENSED",
+	"license": "SEE LICENSE IN license.txt",
 	"bugs": {
 		"url": "https://github.com/Rafal-Majewski/random-text-generator-js/issues"
 	},
