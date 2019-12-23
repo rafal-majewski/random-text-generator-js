@@ -1,4 +1,5 @@
 createRandomTextGenerator=(settings)=>{
+	console.warn("random-text-generator-js is still in the testing stage. Some features may not work as intended. Report any problems in https://github.com/Rafal-Majewski/random-text-generator-js/issues.");
 	let randomTextGenerator={deepness: 40, trust: 2, weights: {}, splitter: "", limit: 400, startingCharacter: String.fromCharCode(2), endingCharacter: String.fromCharCode(3)};
 	randomTextGenerator={...randomTextGenerator, ...settings};
 	randomTextGenerator.learnExample=(example, isRaw)=>{
