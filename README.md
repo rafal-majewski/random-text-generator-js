@@ -3,7 +3,7 @@ With this generator you can generate names for:
 - animals 🐶🐱🐮🐷
 - planets 🌎
 - your children 👶
-- people 👩🧑👨
+- people 👩👨
 - cities 🏘🏢
 - lands 🏝⛰🗻
 - Linux distributions 💻🐧
