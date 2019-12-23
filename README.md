@@ -1,6 +1,6 @@
 # random-text-generator-js
 With this generator you can generate names for:
-- animals 🐶🐱🐮🐷
+- pets 🐶🐱🐮🐷
 - planets 🌎
 - your children 👶
 - people 👩👨
