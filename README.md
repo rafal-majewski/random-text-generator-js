@@ -7,7 +7,7 @@ With this generator you can generate names for:
 - cities 🏘🏢
 - lands 🏝⛰🗻
 - Linux distributions 💻🐧
-- and anything you want...
+- and anything you want...<br/>
 Moreover, you can generate custom Lorem Ipsums!
 
 Play with it at [random-text-generator.firebaseapp.com](https://random-text-generator.firebaseapp.com/).
