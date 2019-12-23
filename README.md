@@ -210,3 +210,76 @@ for (let i=0; i<12; ++i) {
 // Oban
 // Obagagarton
 ```
+
+### predictCharacter
+Similar to [lengthen](#lengthen), but gives you only the predicted following character.
+#### Syntax
+```js
+randomTextGenerator.lengthen(splittedWord);
+```
+```splittedWord``` - **array** of **string**s<br/>
+Returns **string**.
+#### Example
+```js
+let presidents=["Trmup", "Obama", "Bush", "Clinton", "Bush", "Reagan", "Carter"];
+for (let president of presidents) randomTextGenerator.learnExample(president.split(""));
+
+for (let i=0; i<12; ++i) {
+	let name=randomTextGenerator.lengthen("Ob").join("");
+	console.log(name);
+}
+// Oban
+// Obar
+// Obartermush
+// Obanton
+// Obarmamush
+// Oban
+// Oban
+// Obar
+// Obama
+// Obamagar
+// Oban
+// Obagagarton
+```
+
+### shrink
+Reduces the size of the generator's weights by removing saved substrings that have less occurrences than the `trust` value. May cause negative effects when the dataset the generator used for learning is small, so use it only when neccessary.
+#### Syntax
+```js
+randomTextGenerator.shrink();
+```
+Returns **nothing**.
+
+### saveToJson
+Saves the generator parameters and weights to a json.
+#### Syntax
+```js
+randomTextGenerator.saveToJson();
+```
+Returns **string**.
+
+### loadFromJson
+Loads the generator parameters and weights from a json.
+#### Syntax
+```js
+randomTextGenerator.loadFromJson(json);
+```
+```json``` - **string** containing an object saved in the json format.<br/>
+Returns **nothing**.
+
+### saveWeightsToJson
+Saves the generator weights to a json.
+#### Syntax
+```js
+randomTextGenerator.saveWeightsToJson();
+```
+Returns **string**.
+
+### loadWeightsFromJson
+Loads the generator weights from a json.
+#### Syntax
+```js
+randomTextGenerator.loadWeightsFromJson(json);
+```
+```json``` - **string** containing an object saved in the json format.<br/>
+Returns **nothing**.
