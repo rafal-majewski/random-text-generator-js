@@ -107,8 +107,8 @@ createRandomTextGenerator=(settings)=>{
 	randomTextGenerator.saveWeightsToJson=()=>(JSON.stringify(randomTextGenerator.weights));
 	randomTextGenerator.loadWeightsFromJson=(json)=>{randomTextGenerator.weights=JSON.parse(json)};
 	return randomTextGenerator;
-	
 };
 
+module.exports=createRandomTextGenerator;
 },{}]},{},[1])(1)
 });
