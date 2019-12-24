@@ -222,7 +222,7 @@ let presidents=["Trmup", "Obama", "Bush", "Clinton", "Bush", "Reagan", "Carter"]
 for (let president of presidents) randomTextGenerator.learnExample(president.split(""));
 
 for (let i=0; i<12; ++i) {
-	let name=randomTextGenerator.lengthen("Ob").join("");
+	let name=randomTextGenerator.lengthen("Ob".split("")).join("");
 	console.log(name);
 }
 // Oban
@@ -243,7 +243,7 @@ for (let i=0; i<12; ++i) {
 Similar to [lengthen](#lengthen), but gives you only the next predicted character.
 #### Syntax
 ```js
-randomTextGenerator.lengthen(splittedWord);
+randomTextGenerator.predictCharacter(splittedWord);
 ```
 ```splittedWord``` - **array** of **string**s<br/>
 Returns **string**.
@@ -252,22 +252,20 @@ Returns **string**.
 let presidents=["Trmup", "Obama", "Bush", "Clinton", "Bush", "Reagan", "Carter"];
 for (let president of presidents) randomTextGenerator.learnExample(president.split(""));
 
-for (let i=0; i<12; ++i) {
-	let name=randomTextGenerator.lengthen("Ob").join("");
-	console.log(name);
+for (let i=0; i<10; ++i) {
+	let character=randomTextGenerator.predict("Oba".split(""));
+	console.log(character);
 }
-// Oban
-// Obar
-// Obartermush
-// Obanton
-// Obarmamush
-// Oban
-// Oban
-// Obar
-// Obama
-// Obamagar
-// Oban
-// Obagagarton
+// n
+// m
+// m
+// r
+// m
+// r
+// n
+//  (Default end of a word character)
+// r
+// n
 ```
 
 ### shrink
