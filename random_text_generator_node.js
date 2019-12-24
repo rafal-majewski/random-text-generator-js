@@ -101,9 +101,9 @@ createRandomTextGenerator=(settings)=>{
 			if (sum < randomTextGenerator.trust) delete randomTextGenerator.weights[from];
 		}
 	};
-	randomTextGenerator.saveToJson=()=>(JSON.stringify(randomTextGenerator).replace(/\//g, "\\"));
+	randomTextGenerator.saveToJson=()=>(JSON.stringify(randomTextGenerator).replace(/\//g, "\\\\"));
 	randomTextGenerator.loadFromJson=(json)=>{randomTextGenerator={...JSON.parse(json), ...randomTextGenerator}};
-	randomTextGenerator.saveWeightsToJson=()=>(JSON.stringify(randomTextGenerator.weights).replace(/\//g, "\\"));
+	randomTextGenerator.saveWeightsToJson=()=>(JSON.stringify(randomTextGenerator.weights).replace(/\//g, "\\\\"));
 	randomTextGenerator.loadWeightsFromJson=(json)=>{randomTextGenerator.weights=JSON.parse(json)};
 	return randomTextGenerator;
 };
