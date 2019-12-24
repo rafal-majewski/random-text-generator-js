@@ -353,7 +353,7 @@ for (let i=0; i<4; ++i) {
 ```
 
 ## Examples
-### Generating words
+### Generating Words
 #### Usernames
 ```js
 // Create an instance of the generator with default settings.
@@ -384,7 +384,7 @@ for (let i=0; i<12; ++i) {
 // Stus
 // ron
 ```
-### Generating texts
+### Generating Texts
 #### English Lorem Ipsum
 ```js
 // Create an instance of the generator. Because you want to generate a text you should set the splitter to " " and use a smaller deepness that the default 40 (to save memory). In this case the deepness says how many of previous words determine the following words.

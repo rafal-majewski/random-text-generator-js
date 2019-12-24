@@ -1,6 +1,6 @@
 {
 	"name": "random-text-generator",
-	"version": "2.2.2",
+	"version": "2.2.3",
 	"description": "- [Obtaining](#obtaining)\r - [Getting Started](#getting-started)\r - [Functions](#functions)\r \t- [learnExample](#learn-example)\r \t- [learnExamples](#learn-examples)\r \t- [forgetExample](#forget-example)\r \t- [forgetExamples](#forget-examples)\r \t- [generate](#generate)\r \t- [lengthen](#lengthen)\r \t- [shrink](#shrink)",
 	"main": "random_text_generator_node.js",
 	"scripts": {
