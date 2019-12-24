@@ -1,6 +1,6 @@
 createRandomTextGenerator=(settings)=>{
 	console.warn("random-text-generator-js is still in the testing stage. Some features may not work as intended. Report any problems in https://github.com/Rafal-Majewski/random-text-generator-js/issues.");
-	let randomTextGenerator={deepness: 40, trust: 2, weights: {}, splitter: "", limit: 400, startingCharacter: String.fromCharCode(2), endingCharacter: String.fromCharCode(3)};
+	let randomTextGenerator={tries: 80, deepness: 40, trust: 2, weights: {}, splitter: "", limit: 400, startingCharacter: String.fromCharCode(2), endingCharacter: String.fromCharCode(3)};
 	randomTextGenerator={...randomTextGenerator, ...settings};
 	randomTextGenerator.learnExample=(example, isRaw)=>{
 		example=[...((isRaw)?(""):(randomTextGenerator.startingCharacter)), ...example, ...((isRaw)?(""):(randomTextGenerator.endingCharacter))];
@@ -69,7 +69,7 @@ createRandomTextGenerator=(settings)=>{
 	};
 	randomTextGenerator.generate=()=>{
 		let splittedText=[randomTextGenerator.startingCharacter];
-		while (true) {
+		for (let i=0; i<randomTextGenerator.tries; ++i) {
 			let character=randomTextGenerator.predictCharacter(splittedText);
 			if (character === randomTextGenerator.endingCharacter) break;
 			if (!character || splittedText.length > randomTextGenerator.limit) {
@@ -82,7 +82,7 @@ createRandomTextGenerator=(settings)=>{
 	};
 	randomTextGenerator.lengthen=(splittedText)=>{
 		let newSplittedText=[...splittedText];
-		while (true) {
+		for (let i=0; i<randomTextGenerator.tries; ++i) {
 			let character=randomTextGenerator.predictCharacter(newSplittedText);
 			if (character === randomTextGenerator.endingCharacter) break;
 			if (!character || newSplittedText.length > randomTextGenerator.limit) {

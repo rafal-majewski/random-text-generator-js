@@ -65,8 +65,9 @@ All the values shown in `settings` are the default values.
 ```js
 let settings={
 	weights: {}, // Startings weights. Useful when loading the generator with precalculated weights.
-	deepness: 40, // That many previous characters are used while determining a new character.
-	trust: 2, // That many times a substring of characters must occur in order to be used while generating.
+	tries: 80, // That many times the generator will try to generate. If exceeded the generator returns null.
+	deepness: 40, // That many previous characters are used while determining a new character. The more the generator is more intelligent.
+	trust: 2, // That many times a substring of characters must occur in order to be used while generating. The more the results are uniquer.
 	limit: 400, // Maximal length (inclusive) that a generated word can reach. When reached the generator tries to generate the word again.
 	splitter: "", // A character that doesn't occur in the splitted input. Basically use "" while generating words and " " while generating sentences.
 	startingCharacter: String.fromCharCode(2), // A character that every word starts with. You don't include that in your input examples and it's not included in the generated output.
@@ -74,7 +75,7 @@ let settings={
 };
 // Initialize an instance of the generator with custom settings
 let randomTextGenerator=createRandomTextGenerator(settings);
-// Or initialize it with default settings
+// Or initialize it with the default settings
 let randomTextGenerator=createRandomTextGenerator();
 ```
 
@@ -239,7 +240,7 @@ for (let i=0; i<12; ++i) {
 ```
 
 ### predictCharacter
-Similar to [lengthen](#lengthen), but gives you only the predicted following character.
+Similar to [lengthen](#lengthen), but gives you only the next predicted character.
 #### Syntax
 ```js
 randomTextGenerator.lengthen(splittedWord);
@@ -310,7 +311,7 @@ Loads the generator parameters and weights from a json.
 ```js
 randomTextGenerator.loadFromJson(json);
 ```
-```json``` - **string** containing an object saved in the json format.<br/>
+```json``` - **string** containing the generator saved in the json format.<br/>
 Returns **nothing**.
 
 ### saveWeightsToJson
@@ -335,16 +336,20 @@ Loads the generator weights from a json.
 ```js
 randomTextGenerator.loadWeightsFromJson(json);
 ```
-```json``` - **string** containing an object saved in the json format.<br/>
+```json``` - **string** containing the generator's weights saved in the json format.<br/>
 Returns **nothing**.
 #### Example
 ```js
 let json=String.raw`{"\u0002":{"G":1,"P":1,"B":1,"R":1,"N":1,"S":1},"\u0002G":{"e":1},"\u0002Ge":{"r":1},"\u0002Ger":{"m":1},"\u0002Germ":{"a":1},"\u0002Germa":{"n":1},"\u0002German":{"y":1},"\u0002Germany":{"\u0003":1},"G":{"e":1},"Ge":{"r":1},"Ger":{"m":1},"Germ":{"a":1},"Germa":{"n":1},"German":{"y":1},"Germany":{"\u0003":1},"e":{"r":1,"l":1,"d":1,"n":1},"er":{"m":1},"erm":{"a":1},"erma":{"n":1},"erman":{"y":1},"ermany":{"\u0003":1},"r":{"m":1,"w":1},"rm":{"a":1},"rma":{"n":1},"rman":{"y":1},"rmany":{"\u0003":1},"m":{"a":1,"\u0003":1},"ma":{"n":1},"man":{"y":1},"many":{"\u0003":1},"a":{"n":2,"\u0003":1,"y":1},"an":{"y":1,"d":1},"any":{"\u0003":1},"n":{"y":1,"d":1,"\u0003":1},"ny":{"\u0003":1},"y":{"\u0003":2},"\u0002P":{"o":1},"\u0002Po":{"l":1},"\u0002Pol":{"a":1},"\u0002Pola":{"n":1},"\u0002Polan":{"d":1},"\u0002Poland":{"\u0003":1},"P":{"o":1},"Po":{"l":1},"Pol":{"a":1},"Pola":{"n":1},"Polan":{"d":1},"Poland":{"\u0003":1},"o":{"l":1,"r":1},"ol":{"a":1},"ola":{"n":1},"olan":{"d":1},"oland":{"\u0003":1},"l":{"a":1,"g":1},"la":{"n":1},"lan":{"d":1},"land":{"\u0003":1},"and":{"\u0003":1},"nd":{"\u0003":1},"d":{"\u0003":1,"e":1},"\u0002B":{"e":1},"\u0002Be":{"l":1},"\u0002Bel":{"g":1},"\u0002Belg":{"i":1},"\u0002Belgi":{"u":1},"\u0002Belgiu":{"m":1},"\u0002Belgium":{"\u0003":1},"B":{"e":1},"Be":{"l":1},"Bel":{"g":1},"Belg":{"i":1},"Belgi":{"u":1},"Belgiu":{"m":1},"Belgium":{"\u0003":1},"el":{"g":1},"elg":{"i":1},"elgi":{"u":1},"elgiu":{"m":1},"elgium":{"\u0003":1},"lg":{"i":1},"lgi":{"u":1},"lgiu":{"m":1},"lgium":{"\u0003":1},"g":{"i":1},"gi":{"u":1},"giu":{"m":1},"gium":{"\u0003":1},"i":{"u":1,"a":1},"iu":{"m":1},"ium":{"\u0003":1},"u":{"m":1,"s":1},"um":{"\u0003":1},"\u0002R":{"u":1},"\u0002Ru":{"s":1},"\u0002Rus":{"s":1},"\u0002Russ":{"i":1},"\u0002Russi":{"a":1},"\u0002Russia":{"\u0003":1},"R":{"u":1},"Ru":{"s":1},"Rus":{"s":1},"Russ":{"i":1},"Russi":{"a":1},"Russia":{"\u0003":1},"us":{"s":1},"uss":{"i":1},"ussi":{"a":1},"ussia":{"\u0003":1},"s":{"s":1,"i":1},"ss":{"i":1},"ssi":{"a":1},"ssia":{"\u0003":1},"si":{"a":1},"sia":{"\u0003":1},"ia":{"\u0003":1},"\u0002N":{"o":1},"\u0002No":{"r":1},"\u0002Nor":{"w":1},"\u0002Norw":{"a":1},"\u0002Norwa":{"y":1},"\u0002Norway":{"\u0003":1},"N":{"o":1},"No":{"r":1},"Nor":{"w":1},"Norw":{"a":1},"Norwa":{"y":1},"Norway":{"\u0003":1},"or":{"w":1},"orw":{"a":1},"orwa":{"y":1},"orway":{"\u0003":1},"rw":{"a":1},"rwa":{"y":1},"rway":{"\u0003":1},"w":{"a":1,"e":1},"wa":{"y":1},"way":{"\u0003":1},"ay":{"\u0003":1},"\u0002S":{"w":1},"\u0002Sw":{"e":1},"\u0002Swe":{"d":1},"\u0002Swed":{"e":1},"\u0002Swede":{"n":1},"\u0002Sweden":{"\u0003":1},"S":{"w":1},"Sw":{"e":1},"Swe":{"d":1},"Swed":{"e":1},"Swede":{"n":1},"Sweden":{"\u0003":1},"we":{"d":1},"wed":{"e":1},"wede":{"n":1},"weden":{"\u0003":1},"ed":{"e":1},"ede":{"n":1},"eden":{"\u0003":1},"de":{"n":1},"den":{"\u0003":1},"en":{"\u0003":1}}`
 randomTextGenerator.loadWeightsFromJson(json);
-for (let i=0; i<12; ++i) {
-	let name=randomTextGenerator.lengthen("Ob").join("");
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generate().join("");
 	console.log(name);
 }
+// Ged
+// Swa
+// Bederwa
+// Belgiuma
 ```
 
 ## Examples
