@@ -263,7 +263,7 @@ for (let i=0; i<10; ++i) {
 // m
 // r
 // n
-//  (Default end of a word character)
+//  (the default end of a word character)
 // r
 // n
 ```
@@ -359,10 +359,10 @@ let randomTextGenerator=createRandomTextGenerator();
 
 // Make an array with some usernames.
 let usernames=["StinkyPoop", "Alextron234", "BattleDash", "berkey10", "Ezblox23", "robiko858", "zakizakowski", "MrArtur1337", "AzisDeus", "AustrianPainter1889", "pomidorek2pl", "JoeMamma", "MafiaBoss75", "SciManDan", "siuras_ogoras986", "jacob.flix", "malario", "BenDrowned", "pickupthefox", "okboomer"];
-// Iterate through every username and pass them to the generator. You have to pass split them and pass an array of strings like ["m", "a", "l", "a", "r", "i", "o"].
+// Pass every username (splitted) to the generator.
 for (let username of usernames) randomTextGenerator.learnExample(username.split(""));
 
-// console.log twelve nicknames
+// console.log twelve nicknames.
 for (let i=0; i<12; ++i) {
 	let username=randomTextGenerator.generate().join("");
 	console.log(username);
