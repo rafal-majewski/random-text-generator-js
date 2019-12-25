@@ -68,9 +68,9 @@ let settings={
 	weights: {}, // Startings weights. Useful when loading the generator with precalculated weights.
 	multiplier: 1, // Every occurence will be counted as if it occured that many times.
 	tries: 80, // That many times the generator will try to generate. If exceeded the generator returns null.
-	deepness: 40, // That many previous characters are used while determining a new character. The more the generator is more intelligent.
-	trust: 2, // That many times a substring of characters must occur in order to be used while generating. The more the results are uniquer.
-	limit: 400, // Maximal length (inclusive) that a generated word can reach. When reached the generator tries to generate the word again.
+	deepness: 40, // That many previous characters are used while determining a new character. The greater the generator is more intelligent and needs more memory.
+	trust: 2, // That many times a substring of characters must occur in order to be used while generating. The greater the results are uniquer.
+	limit: 400, // Maximal length (inclusive) that a generated word can reach. When reached, the generator tries to generate the word again.
 	splitter: "", // A character that doesn't occur in the splitted input. Basically use "" while generating words and " " while generating sentences.
 	startingCharacter: String.fromCharCode(2), // A character that every word starts with. You don't include that in your input examples and it's not included in the generated output.
 	endingCharacter: String.fromCharCode(3), // A character that every word ends with. You don't include that word in your input examples and it's not included in the generated output.
