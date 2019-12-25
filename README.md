@@ -63,8 +63,10 @@ const createRandomTextGenerator=require("random-text-generator");
 ## Getting Started
 All the values shown in `settings` are the default values.
 ```js
+// You can change the settings on the fly as well, just write randomTextGenerator.settingName=newValue.
 let settings={
 	weights: {}, // Startings weights. Useful when loading the generator with precalculated weights.
+	multiplier: 1, // Every occurence will be counted as if it occured that many times.
 	tries: 80, // That many times the generator will try to generate. If exceeded the generator returns null.
 	deepness: 40, // That many previous characters are used while determining a new character. The more the generator is more intelligent.
 	trust: 2, // That many times a substring of characters must occur in order to be used while generating. The more the results are uniquer.
