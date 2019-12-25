@@ -14,7 +14,7 @@ Play with it at [random-text-generator.firebaseapp.com](https://random-text-gene
 
 What the generator does is basically remembering what characters can come after another. While generating it creates and empty string and predicts new characters in a loop.
 
-The generator **does not** use any kind of a neural network so don't expect the results to make any logical sense. They are statistically correct which makes them look natural. If you were looking for an intelligent random text generator you should use a neural network library like [brain.js](#https://brain.js.org/).
+The generator **does not** use any kind of a neural network so don't expect the results to make any logical sense. They are statistically correct which makes them look natural. If you were looking for an intelligent random text generator you should use a neural network library like [brain.js](https://brain.js.org/).
 
 Throughout the documentation I will be saying that the generator generates `words` that are made out of `characters` but don't worry if you want to generate texts, just put words instead of characters and you will get sentences 😉.
 
