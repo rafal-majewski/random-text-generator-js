@@ -405,7 +405,7 @@ console.log(randomTextGenerator.generate().join(" "));
 ## Data
 There are no data provided with the library, so you have to get it yourself. However, you can use the data I store on my website.
 Make a request to `https://rafal-majewski.firebaseapp.com/text_database/list.json` and get a list of currently available datasets.
-Items on the list consist of 3 keys:
+Items on the list consist of 3 keys:<br />
 `id` - **string**. Id of the dataset.<br/>
 `path` - **string**. Path to the dataset.<br/>
 `type` - **string**. Whether it is a dataset of words (value: `word`) or texts (value: `text`).
