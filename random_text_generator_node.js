@@ -10,7 +10,7 @@ createRandomTextGenerator=(settings)=>{
 				let to=example[i2+1];
 				if (!randomTextGenerator.weights[from]) randomTextGenerator.weights[from]={};
 				if (!randomTextGenerator.weights[from][to]) randomTextGenerator.weights[from][to]=0;
-				++randomTextGenerator.weights[from][to];
+				randomTextGenerator.weights[from][to]+=randomTextGenerator.multiplier;
 			}
 		}
 	};
@@ -22,7 +22,7 @@ createRandomTextGenerator=(settings)=>{
 				let to=example[i2+1];
 				if (!randomTextGenerator.weights[from]) randomTextGenerator.weights[from]={};
 				if (!randomTextGenerator.weights[from][to]) randomTextGenerator.weights[from][to]=0;
-				--randomTextGenerator.weights[from][to];
+				randomTextGenerator.weights[from][to]-=randomTextGenerator.multiplier;
 				if (randomTextGenerator.weights[from][to] <= 0) delete randomTextGenerator.weights[from][to];
 				if (Object.keys(randomTextGenerator.weights[from]).length <= 0) delete randomTextGenerator.weights[from];
 			}

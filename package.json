@@ -1,6 +1,6 @@
 {
 	"name": "random-text-generator",
-	"version": "2.2.6",
+	"version": "2.2.7",
 	"description": "",
 	"main": "random_text_generator_node.js",
 	"scripts": {
