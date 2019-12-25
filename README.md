@@ -49,7 +49,7 @@ Do what you want.
 ## Obtaining
 ### HTML
 ```html
-<script src="https://raw.githubusercontent.com/Rafal-Majewski/random-text-generator-js/master/random_text_generator_browser.js"></script>
+<script src="https://rafal-majewski.firebaseapp.com/random_text_generator.js"></script>
 ```
 
 ### node.js
