@@ -1,6 +1,6 @@
 {
 	"name": "random-text-generator",
-	"version": "2.2.10",
+	"version": "2.2.11",
 	"description": "",
 	"main": "random_text_generator_node.js",
 	"scripts": {
@@ -10,6 +10,19 @@
 		"type": "git",
 		"url": "git+https://github.com/Rafal-Majewski/random-text-generator-js.git"
 	},
+	"keywords": [
+		"procedural",
+		"generator",
+		"generation",
+		"procedural name generation",
+		"procedural text generation",
+		"procedural name generator",
+		"procedural text generator",
+		"name generator",
+		"text generator",
+		"lorem ipsum",
+		"string"
+	],
 	"author": "Rafał Majewski",
 	"license": "SEE LICENSE IN license.txt",
 	"bugs": {
