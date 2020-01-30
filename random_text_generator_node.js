@@ -70,26 +70,30 @@ createRandomTextGenerator=(settings)=>{
 	randomTextGenerator.generate=()=>{
 		let splittedText=[randomTextGenerator.startingCharacter];
 		for (let i=0; i<randomTextGenerator.tries; ++i) {
-			let character=randomTextGenerator.predictCharacter(splittedText);
-			if (character === randomTextGenerator.endingCharacter) break;
-			if (!character || splittedText.length > randomTextGenerator.limit) {
-				splittedText=[randomTextGenerator.startingCharacter];
-				continue;
+			while (true) {
+				let character=randomTextGenerator.predictCharacter(splittedText);
+				if (character === randomTextGenerator.endingCharacter) break;
+				if (!character || splittedText.length > randomTextGenerator.limit) {
+					splittedText=[randomTextGenerator.startingCharacter];
+					continue;
+				}
+				splittedText.push(character);
 			}
-			splittedText.push(character);
 		}
 		return splittedText.slice(1);
 	};
 	randomTextGenerator.lengthen=(splittedText)=>{
 		let newSplittedText=[...splittedText];
 		for (let i=0; i<randomTextGenerator.tries; ++i) {
-			let character=randomTextGenerator.predictCharacter(newSplittedText);
-			if (character === randomTextGenerator.endingCharacter) break;
-			if (!character || newSplittedText.length > randomTextGenerator.limit) {
-				newSplittedText=[...splittedText];
-				continue;
+			while (true) {
+				let character=randomTextGenerator.predictCharacter(newSplittedText);
+				if (character === randomTextGenerator.endingCharacter) break;
+				if (!character || newSplittedText.length > randomTextGenerator.limit) {
+					newSplittedText=[...splittedText];
+					continue;
+				}
+				newSplittedText.push(character);
 			}
-			newSplittedText.push(character);
 		}
 		return newSplittedText;
 	};
