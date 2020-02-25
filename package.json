@@ -1,6 +1,6 @@
 {
 	"name": "random-text-generator",
-	"version": "2.3.11",
+	"version": "2.4.0",
 	"description": "",
 	"main": "random_text_generator_node.js",
 	"scripts": {
@@ -24,7 +24,7 @@
 		"string"
 	],
 	"author": "Rafał Majewski",
-	"license": "SEE LICENSE IN license.txt",
+	"license": "Unlicense",
 	"bugs": {
 		"url": "https://github.com/Rafal-Majewski/random-text-generator-js/issues"
 	},
