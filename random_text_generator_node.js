@@ -72,30 +72,28 @@ createRandomTextGenerator=(settings)=>{
 		for (let i=0; i<randomTextGenerator.tries; ++i) {
 			while (true) {
 				let character=randomTextGenerator.predictCharacter(splittedText);
-				if (character === randomTextGenerator.endingCharacter) break;
+				if (character === randomTextGenerator.endingCharacter) return splittedText.slice(1);
 				if (!character || splittedText.length > randomTextGenerator.limit) {
 					splittedText=[randomTextGenerator.startingCharacter];
-					continue;
+					break;
 				}
 				splittedText.push(character);
 			}
 		}
-		return splittedText.slice(1);
 	};
 	randomTextGenerator.lengthen=(splittedText)=>{
 		let newSplittedText=[...splittedText];
 		for (let i=0; i<randomTextGenerator.tries; ++i) {
 			while (true) {
 				let character=randomTextGenerator.predictCharacter(newSplittedText);
-				if (character === randomTextGenerator.endingCharacter) break;
+				if (character === randomTextGenerator.endingCharacter) return newSplittedText;
 				if (!character || newSplittedText.length > randomTextGenerator.limit) {
 					newSplittedText=[...splittedText];
-					continue;
+					break;
 				}
 				newSplittedText.push(character);
 			}
 		}
-		return newSplittedText;
 	};
 	randomTextGenerator.shrink=()=>{
 		for (let from of Object.keys(randomTextGenerator.weights)) {
