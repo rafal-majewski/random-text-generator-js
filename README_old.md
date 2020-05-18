@@ -1,4 +1,6 @@
 # random-text-generator-js
+**This is a readme for the legacy version of random-text-generator. Consider [upgrading](UPGRADING.md) or rewriting your code in [the latest version](README.md).**
+
 With this generator you can generate names for:
 - pets 🐶🐱🐮🐷
 - planets 🌎
