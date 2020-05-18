@@ -124,22 +124,128 @@ randomTextGenerator.learnRight("Mark");
 randomTextGenerator.learnRight("Henry");
 randomTextGenerator.learnRight("Bob");
 randomTextGenerator.learnRight("John");
-randomTextGenerator.learn("David"); // randomTextGenerator.learn is an alias for randomTextGenerator.learnRight.
+randomTextGenerator.learn("David"); // learn is an alias for learnRight.
+randomTextGenerator.learn("James");
 
-for (let i=0; i<12; ++i) {
+for (let i=0; i<8; ++i) {
 	let name=randomTextGenerator.generate();
 	console.log(name);
 }
-// Dary
-// John
-// Job
-// Mavid
-// Bob
-// Henry
-// Hen
-// Dark
-// Mavid
-// Henry
-// Henrk
+// Jamen
 // Mary
+// Jark
+// Job
+// Bohn
+// Dark
+// John
+// Jamen
+
+// You can also provide starting letters
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generate("J");
+	console.log(name);
+}
+// Job
+// Jary
+// Javid
+// James
+```
+
+### learnLeft
+Teaches the generator a new word (right -> left).
+#### Syntax
+```js
+randomTextGenerator.learnLeft(example, origin, multiplier, isRaw);
+```
+- **example** - string or array of strings<br/>
+- **origin** - *optional*, string, by default `_default`<br/>
+Specifies the origin of a word.<br/>
+- **multiplier** - *optional*, number, by default `1`<br/>
+The importance of this example.<br/>
+- **isRaw** - *optional*, boolean, by default `false`<br/>
+If `true` the input is not treated like a word, but rather like a part of a word.<br/>
+<br/>
+
+Returns nothing.
+#### Example
+```js
+randomTextGenerator.learnLeft("Mark");
+randomTextGenerator.learnLeft("Henry");
+randomTextGenerator.learnLeft("Bob");
+randomTextGenerator.learnLeft("John");
+randomTextGenerator.learnLeft("David");
+randomTextGenerator.learnLeft("James");
+
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateLeft();
+	console.log(name);
+}
+// David
+// Henry
+// Jark
+// Bob
+
+// All the names are going to end with "k"
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateLeft("k");
+	console.log(name);
+}
+// Dark
+// Bohnrk
+// Henrk
+// Jark
+
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateLeft("y");
+	console.log(name);
+}
+// Johnry
+// Bohnry
+// Jary
+// Dary
+```
+
+### learnBoth
+Calls both [learnRight](#learn-right) and [learnLeft](#learn-left).
+#### Syntax
+```js
+randomTextGenerator.learnBoth(example, origin, multiplier, isRaw);
+```
+- **example** - string or array of strings<br/>
+- **origin** - *optional*, string, by default `_default`<br/>
+Specifies the origin of a word.<br/>
+- **multiplier** - *optional*, number, by default `1`<br/>
+The importance of this example.<br/>
+- **isRaw** - *optional*, boolean, by default `false`<br/>
+If `true` the input is not treated like a word, but rather like a part of a word.<br/>
+<br/>
+
+Returns nothing.
+#### Example
+```js
+randomTextGenerator.learnBoth("Mark");
+randomTextGenerator.learnBoth("Henry");
+randomTextGenerator.learnBoth("Bob");
+randomTextGenerator.learnBoth("John");
+randomTextGenerator.learnBoth("David");
+randomTextGenerator.learnBoth("James");
+
+// All the names are going to have "h" somewhere inside.
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateBoth("h");
+	console.log(name);
+}
+// Johnry
+// Bohnry
+// Bohnrk
+// John
+
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateBoth("a");
+	console.log(name);
+}
+// Mamen
+// Mames
+// David
+// Mavid
 ```
