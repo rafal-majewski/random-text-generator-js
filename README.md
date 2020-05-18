@@ -22,28 +22,13 @@ Throughout the documentation I will be saying that the generator generates `word
 
 Note: Generated words in some examples may look odd, that's because of not sufficient amout of learning data. The more learning data you provide the better the results.
 
+## Table of contents
 - [License](#License)
 - [Obtaining](#obtaining)
 - [Getting Started](#getting-started)
 - [Functions](#functions)
-	- [learnExample](#learn-example)
-	- [learnExamples](#learn-examples)
-	- [forgetExample](#forget-example)
-	- [forgetExamples](#forget-examples)
-	- [generate](#generate)
-	- [lengthen](#lengthen)
-	- [predictCharacter](#predict-character)
-	- [shrink](#shrink)
-	- [saveToJson](#save-to-json)
-	- [loadFromJson](#load-from-json)
-	- [saveWeightsToJson](#save-weights-to-json)
-	- [loadWeightsFromJson](#load-weights-from-json)
-- [Examples](#examples)
-	- [Generating Words](#examples-words)
-		- [Usernames](#examples-usernames)
-	- [Generating Texts](#examples-texts)
-		- [English Lorem Ipsum](#english-lorem-ipsum)
-- [Data](#data)
+	- [learn](#learn)
+	- [learnRight](#learn-right)
 
 ## License
 This is free and unencumbered software released into the public domain.
@@ -115,6 +100,8 @@ let randomTextGenerator=new RandomTextGenerator();
 ```
 
 ## Functions
+### learn
+An alias for [learnRight](#learn-right).
 ### learnRight
 Teaches the generator a new word (left -> right).
 #### Syntax
