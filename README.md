@@ -1,5 +1,5 @@
 # random-text-generator-js
-**Are you looking for a readme for the older version of the generator? If so you can find it [here](README_old.md), but support for this version is going to be removed in an upcoming update, so you should consider [upgrading](UPGRADING.md) it from version 2 to version 3.**
+Are you looking for a readme for the older version of the generator? If so you can find it [here](README_old.md), but support for this version is going to be removed in an upcoming update, so you should consider [upgrading](UPGRADING.md) it from version 2 to version 3.
 
 With this generator you can generate names for:
 - pets 🐶🐱🐮🐷
@@ -16,7 +16,7 @@ Play with it at [random-text-generator.firebaseapp.com](https://random-text-gene
 
 What the generator does is basically remembering what characters can come after another. While generating it creates and empty string and predicts new characters in a loop.
 
-The generator **does not** use any kind of a neural network so don't expect the results to make any logical sense. They are statistically correct which makes them look natural. If you were looking for an intelligent random text generator you should use a neural network library like [brain.js](https://brain.js.org/).
+The generator does not use any kind of a neural network so don't expect the results to make any logical sense. They are statistically correct which makes them look natural. If you were looking for an intelligent random text generator you should use a neural network library like [brain.js](https://brain.js.org/).
 
 Throughout the documentation I will be saying that the generator generates `words` that are made out of `characters` but don't worry, if you want to generate texts, just put words instead of characters and you will get sentences 😉.
 
@@ -108,16 +108,16 @@ Teaches the generator a new word (left -> right).
 ```js
 randomTextGenerator.learnRight(example, origin, multiplier, isRaw);
 ```
-- ```example``` - **string** or **array** of **string**s<br/>
-- ```origin``` - *optional*, **string**, by default `_default`<br/>
+- **example** - string or array of strings<br/>
+- **origin** - *optional*, string, by default `_default`<br/>
 Specifies the origin of a word.<br/>
-- ```multiplier``` - *optional*, **number**, by default `1`<br/>
+- **multiplier** - *optional*, number, by default `1`<br/>
 The importance of this example.<br/>
-- ```isRaw``` - *optional*, **boolean**, by default `false`<br/>
+- **isRaw** - *optional*, boolean, by default `false`<br/>
 If `true` the input is not treated like a word, but rather like a part of a word.<br/>
 <br/>
 
-Returns **nothing**.
+Returns nothing.
 #### Example
 ```js
 randomTextGenerator.learnRight("Mark");
