@@ -115,6 +115,7 @@ Specifies the origin of a word.<br/>
 The importance of this example.<br/>
 - ```isRaw``` - *optional*, **boolean**, by default `false`<br/>
 If `true` the input is not treated like a word, but rather like a part of a word.<br/>
+<br/>
 Returns **nothing**.
 #### Example
 ```js
