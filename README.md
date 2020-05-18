@@ -119,7 +119,7 @@ randomTextGenerator.learnRight("Mark");
 randomTextGenerator.learnRight("Henry");
 randomTextGenerator.learnRight("Bob");
 randomTextGenerator.learnRight("John");
-randomTextGenerator.learnRight("David");
+randomTextGenerator.learn("David"); // randomTextGenerator.learn is an alias for randomTextGenerator.learnRight.
 
 for (let i=0; i<12; ++i) {
 	let name=randomTextGenerator.generate();
