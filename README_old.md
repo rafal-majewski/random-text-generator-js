@@ -1,6 +1,4 @@
 # random-text-generator-js
-Play with it at [random-text-generator.firebaseapp.com](https://random-text-generator.firebaseapp.com/).
-
 With this generator you can generate names for:
 - pets 🐶🐱🐮🐷
 - planets 🌎

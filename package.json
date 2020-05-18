@@ -1,10 +1,10 @@
 {
 	"name": "random-text-generator",
-	"version": "2.4.2",
+	"version": "3.0.0",
 	"description": "",
 	"main": "random_text_generator_node.js",
 	"scripts": {
-		"browserify": "browserify random_text_generator_node.js --s module > random_text_generator_browser.js"
+		"browserify": "browserify random_text_generator_node.js --s module > random_text_generator_browser.js && terser random_text_generator_browser.js -o random_text_generator_browser.js"
 	},
 	"repository": {
 		"type": "git",
