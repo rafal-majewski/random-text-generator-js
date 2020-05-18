@@ -108,10 +108,10 @@ Teaches the generator a new word (left -> right).
 ```js
 randomTextGenerator.learnRight(example, origin, multiplier, isRaw);
 ```
-```example``` - **string** or **array** of **string**s.<br/>
-```origin``` - *optional*, **string**, by default `_default`. Specifies the origin of a word.<br/>
-```multiplier``` - *optional*, **number**, by default `1`. The importance of this example.<br/>
-```isRaw``` - *optional*, **boolean**, by default `false`. If `true` the input is not treated like a word, but rather like a part of a word.<br/>
+- ```example``` - **string** or **array** of **string**s.<br/>
+- ```origin``` - *optional*, **string**, by default `_default`. Specifies the origin of a word.<br/>
+- ```multiplier``` - *optional*, **number**, by default `1`. The importance of this example.<br/>
+- ```isRaw``` - *optional*, **boolean**, by default `false`. If `true` the input is not treated like a word, but rather like a part of a word.<br/>
 Returns **nothing**.
 #### Example
 ```js
