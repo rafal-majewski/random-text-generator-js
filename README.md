@@ -29,6 +29,13 @@ Note: Generated words in some examples may look odd, that's because of not suffi
 - [Functions](#functions)
 	- [learn](#learn)
 	- [learnRight](#learn-right)
+	- [learnLeft](#learn-right)
+	- [learnBoth](#learn-both)
+	- [forget](#forget)
+	- [forgetRight](#forget-right)
+	- [forgetLeft](#forget-right)
+	- [forgetBoth](#forget-both)
+
 
 ## License
 This is free and unencumbered software released into the public domain.
@@ -313,7 +320,7 @@ for (let i=0; i<6; ++i) {
 // Watler
 ```
 
-### forgetRight
+### forgetLeft
 Unteaches the generator a word (right -> left).
 #### Syntax
 ```js
@@ -415,7 +422,7 @@ for (let i=0; i<4; ++i) {
 // h
 ```
 
-### predictCharacterLeft
+### predictLeft
 Predicts the next character.
 #### Syntax
 ```js
