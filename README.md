@@ -249,3 +249,99 @@ for (let i=0; i<4; ++i) {
 // David
 // Mavid
 ```
+
+### forget
+An alias for [forgetRight](#forget-right).
+### forgetRight
+Unteaches the generator a word (left -> right).
+#### Syntax
+```js
+randomTextGenerator.forgetRight(example, origin, multiplier, isRaw);
+```
+- **example** - string or array of strings<br/>
+- **origin** - *optional*, string, by default `_default`<br/>
+Specifies the origin of a word.<br/>
+- **multiplier** - *optional*, number, by default `1`<br/>
+The importance of this example.<br/>
+- **isRaw** - *optional*, boolean, by default `false`<br/>
+If `true` the input is not treated like a word, but rather like a part of a word.<br/>
+<br/>
+
+Returns nothing.
+#### Example
+```js
+randomTextGenerator.learn("Austin");
+randomTextGenerator.learn("Seattle");
+randomTextGenerator.learn("Seymour");
+randomTextGenerator.learn("Washington");
+randomTextGenerator.learn("Vancouver");
+randomTextGenerator.learn("Dallas");
+randomTextGenerator.learn("Detroit");
+randomTextGenerator.learn("Denver");
+randomTextGenerator.learn("Boston");
+randomTextGenerator.learn("Beaumont");
+randomTextGenerator.learn("Bozeman");
+
+for (let i=0; i<6; ++i) {
+	let name=randomTextGenerator.generate();
+	console.log(name);
+}
+// Den
+// Seymouver
+// Bozemat
+// Vas
+// Bostingtleaur
+// Seat
+
+randomTextGenerator.forget("Dallas");
+randomTextGenerator.forget("Detroit");
+randomTextGenerator.forget("Denver");
+randomTextGenerator.forget("Boston");
+randomTextGenerator.forget("Beaumont");
+randomTextGenerator.forget("Bozeman");
+
+for (let i=0; i<6; ++i) {
+	let name=randomTextGenerator.generate();
+	console.log(name);
+}
+// Seymour
+// Auver
+// Seastleasttleymon
+// Vancouveymouver
+// Seymon
+// Watler
+```
+
+### forgetRight
+Unteaches the generator a word (right -> left).
+#### Syntax
+```js
+randomTextGenerator.forgetLeft(example, origin, multiplier, isRaw);
+```
+- **example** - string or array of strings<br/>
+- **origin** - *optional*, string, by default `_default`<br/>
+Specifies the origin of a word.<br/>
+- **multiplier** - *optional*, number, by default `1`<br/>
+The importance of this example.<br/>
+- **isRaw** - *optional*, boolean, by default `false`<br/>
+If `true` the input is not treated like a word, but rather like a part of a word.<br/>
+<br/>
+
+Returns nothing.
+
+### forgetBoth
+Calls both [forgetRight](#forget-right) and [forgetLeft](#forget-left).
+#### Syntax
+```js
+randomTextGenerator.forgetBoth(example, origin, multiplier, isRaw);
+```
+- **example** - string or array of strings<br/>
+- **origin** - *optional*, string, by default `_default`<br/>
+Specifies the origin of a word.<br/>
+- **multiplier** - *optional*, number, by default `1`<br/>
+The importance of this example.<br/>
+- **isRaw** - *optional*, boolean, by default `false`<br/>
+If `true` the input is not treated like a word, but rather like a part of a word.<br/>
+<br/>
+
+Returns nothing.
