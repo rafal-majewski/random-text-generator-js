@@ -1,46 +1,13 @@
 const RandomTextGenerator=require("./random_text_generator_node.js")({legacy: false});
 let randomTextGenerator=new RandomTextGenerator();
 
-randomTextGenerator.learn("Trump");
-randomTextGenerator.learn("Obama");
-randomTextGenerator.learn("Bush");
-randomTextGenerator.learn("Clinton");
-randomTextGenerator.learn("Reagan");
-randomTextGenerator.learn("Carter");
-randomTextGenerator.learn("Ford");
-randomTextGenerator.learn("Nixon");
-randomTextGenerator.learn("Johnson");
-randomTextGenerator.learn("Kennedy");
-randomTextGenerator.learn("Eisenhower");
-randomTextGenerator.learn("Truman");
-randomTextGenerator.learn("Roosevelt");
-randomTextGenerator.learn("Hoover");
-randomTextGenerator.learn("Coolidge");
-randomTextGenerator.learn("Harding");
+// let petsNames=["Rosie", "Charlie", "Alfie", "Molly", "Bella", "Poppy", "Daisy", "Cleo", "Chloe", "Angel", "Dusty", "Bailey", "Mittens", "Casey", "Socks", "Snowball", "Simon", "Teddy", "Lola", "Millie", "Bella", "Tilly", "Coco", "Luna", "Phoebe"];
 
-for (let i=0; i<4; ++i) {
-	let character=randomTextGenerator.predictRight("H");
-	console.log(character);
-}
-// a
-// o
-// a
-// a
+// petsNames.forEach((petName)=>{
+// 	randomTextGenerator.learn(petName);
+// });
 
-for (let i=0; i<4; ++i) {
-	let character=randomTextGenerator.predictRight("Car");
-	console.log(character);
-}
-// t
-// d
-// d
-// t
-
-for (let i=0; i<4; ++i) {
-	let character=randomTextGenerator.predictRight("John");
-	console.log(character);
-}
-// s
-// t
-// \3
-// h
+// for (let i=0; i<8; ++i) {
+// 	let name=randomTextGenerator.generate();
+// 	console.log(name);
+// }

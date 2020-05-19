@@ -29,12 +29,17 @@ Note: Generated words in some examples may look odd, that's because of not suffi
 - [Functions](#functions)
 	- [learn](#learn)
 	- [learnRight](#learn-right)
-	- [learnLeft](#learn-right)
+	- [learnLeft](#learn-left)
 	- [learnBoth](#learn-both)
 	- [forget](#forget)
 	- [forgetRight](#forget-right)
-	- [forgetLeft](#forget-right)
+	- [forgetLeft](#forget-left)
 	- [forgetBoth](#forget-both)
+	- [generate](#generate)
+	- [generateRight](#generate-right)
+	- [generateLeft](#generate-left)
+	- [generateBoth](#generate-both)
+
 
 
 ## License
@@ -354,10 +359,10 @@ If `true` the input is not treated like a word, but rather like a part of a word
 
 Returns nothing.
 
-### predictCharacter
-An alias for [predictCharacterRight](#predict-character-right).
+### predict
+An alias for [predictRight](#predict-right).
 
-### predictCharacterRight
+### predictRight
 Predicts the next character.
 #### Syntax
 ```js
@@ -370,11 +375,8 @@ Specifies the origins allowed in the generation process<br/>
 - **isRaw** - *optional*, boolean, by default `false`<br/>
 If `true` the input is not treated like a word, but rather like a part of a word.<br/>
 - **obeyLimit** - *optional*, boolean, by default `false`<br/>
-If `true` the generator obeys the minimal and maximal length boundaries while generating.<br/>
-<br/>
-
-Returns nothing.
-
+If `true` the generator obeys the minimal and maximal length boundaries while generating.<br/><br/>
+Returns string.
 #### Example
 ```js
 randomTextGenerator.learn("Trump");
@@ -418,7 +420,7 @@ for (let i=0; i<4; ++i) {
 }
 // s
 // t
-// \3
+// \3 (the default end of word character)
 // h
 ```
 
@@ -435,11 +437,8 @@ Specifies the origins allowed in the generation process<br/>
 - **isRaw** - *optional*, boolean, by default `false`<br/>
 If `true` the input is not treated like a word, but rather like a part of a word.<br/>
 - **obeyLimit** - *optional*, boolean, by default `false`<br/>
-If `true` the generator obeys the minimal and maximal length boundaries while generating.<br/>
-<br/>
-
-Returns nothing.
-
+If `true` the generator obeys the minimal and maximal length boundaries while generating.<br/><br/>
+Returns string.
 #### Example
 ```js
 randomTextGenerator.learnLeft("Trump");
@@ -485,4 +484,135 @@ for (let i=0; i<4; ++i) {
 // n
 // n
 // n
+```
+
+### generate
+An alias for [generateRight](#generate-right).
+
+### generateRight
+Generates a new word (left -> right) or lengthens given input.
+#### Syntax
+```js
+randomTextGenerator.learnRight(text, origins, isRaw);
+```
+- **text** - string or array of strings<br/>
+Text to predict next character from.<br/>
+- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsRighs)`<br/>
+Specifies the origins allowed in the generation process.<br/>
+- **isRaw** - *optional*, boolean, by default `false`<br/>
+If `true` the input is not treated like a word, but rather like a part of a word.<br/>
+
+Returns string. `randomTextGenerator.splitter` is used automatically to join characters.
+#### Example
+```js
+let petsNames=["Daisy", "Cleo", "Chloe", "Angel", "Dusty", "Bailey", "Mittens", "Casey", "Socks", "Snowball", "Simon"];
+
+petsNames.forEach((petName)=>{
+	randomTextGenerator.learn(petName);
+});
+
+for (let i=0; i<8; ++i) {
+	let name=randomTextGenerator.generate();
+	console.log(name);
+}
+
+```
+
+### learnLeft
+Teaches the generator a new word (right -> left).
+#### Syntax
+```js
+randomTextGenerator.learnLeft(example, origin, multiplier, isRaw);
+```
+- **example** - string or array of strings<br/>
+- **origin** - *optional*, string, by default `"_default"`<br/>
+Specifies the origin of a word.<br/>
+- **multiplier** - *optional*, number, by default `1`<br/>
+The importance of this example.<br/>
+- **isRaw** - *optional*, boolean, by default `false`<br/>
+If `true` the input is not treated like a word, but rather like a part of a word.<br/>
+<br/>
+
+Returns nothing.
+#### Example
+```js
+randomTextGenerator.learnLeft("Mark");
+randomTextGenerator.learnLeft("Henry");
+randomTextGenerator.learnLeft("Bob");
+randomTextGenerator.learnLeft("John");
+randomTextGenerator.learnLeft("David");
+randomTextGenerator.learnLeft("James");
+
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateLeft();
+	console.log(name);
+}
+// David
+// Henry
+// Jark
+// Bob
+
+// All the names are going to end with "k"
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateLeft("k");
+	console.log(name);
+}
+// Dark
+// Bohnrk
+// Henrk
+// Jark
+
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateLeft("y");
+	console.log(name);
+}
+// Johnry
+// Bohnry
+// Jary
+// Dary
+```
+
+### learnBoth
+Calls both [learnRight](#learn-right) and [learnLeft](#learn-left).
+#### Syntax
+```js
+randomTextGenerator.learnBoth(example, origin, multiplier, isRaw);
+```
+- **example** - string or array of strings<br/>
+- **origin** - *optional*, string, by default `"_default"`<br/>
+Specifies the origin of a word.<br/>
+- **multiplier** - *optional*, number, by default `1`<br/>
+The importance of this example.<br/>
+- **isRaw** - *optional*, boolean, by default `false`<br/>
+If `true` the input is not treated like a word, but rather like a part of a word.<br/>
+<br/>
+
+Returns nothing.
+#### Example
+```js
+randomTextGenerator.learnBoth("Mark");
+randomTextGenerator.learnBoth("Henry");
+randomTextGenerator.learnBoth("Bob");
+randomTextGenerator.learnBoth("John");
+randomTextGenerator.learnBoth("David");
+randomTextGenerator.learnBoth("James");
+
+// All the names are going to have "h" somewhere inside.
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateBoth("h");
+	console.log(name);
+}
+// Johnry
+// Bohnry
+// Bohnrk
+// John
+
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateBoth("a");
+	console.log(name);
+}
+// Mamen
+// Mames
+// David
+// Mavid
 ```
