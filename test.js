@@ -1,18 +1,20 @@
 const RandomTextGenerator=require("./random_text_generator_node.js")({legacy: false});
 let randomTextGenerator=new RandomTextGenerator();
 
-
-randomTextGenerator.learn("Austin");
-randomTextGenerator.learn("Seattle");
-randomTextGenerator.learn("Seymour");
-randomTextGenerator.learn("Washington");
-randomTextGenerator.learn("Vancouver");
-randomTextGenerator.learn("Dallas");
-randomTextGenerator.learn("Detroit");
-randomTextGenerator.learn("Denver");
-randomTextGenerator.learn("Boston");
-randomTextGenerator.learn("Beaumont");
-randomTextGenerator.learn("Bozeman");
+randomTextGenerator.learn("Trump");
+randomTextGenerator.learn("Obama");
+randomTextGenerator.learn("Bush");
+randomTextGenerator.learn("Clinton");
+randomTextGenerator.learn("Reagan");
+randomTextGenerator.learn("Carter");
+randomTextGenerator.learn("Ford");
+randomTextGenerator.learn("Nixon");
+randomTextGenerator.learn("Johnson");
+randomTextGenerator.learn("Kennedy");
+randomTextGenerator.learn("Eisenhower");
+randomTextGenerator.learn("Truman");
+randomTextGenerator.learn("Roosevelt");
+randomTextGenerator.learn("Hoover");
 
 for (let i=0; i<6; ++i) {
 	let name=randomTextGenerator.generate();

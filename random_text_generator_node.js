@@ -258,7 +258,7 @@ RandomTextGenerator.prototype.predictRight=function(text, origins, isRaw, obeyLi
 	);
 };
 
-RandomTextGenerator.prototype.predictLeft=function(text, origins, isRaw) {
+RandomTextGenerator.prototype.predictLeft=function(text, origins, isRaw, obeyLimit) {
 	if (!text) text="";
 	return this._predict(
 		this.weightsLeft,

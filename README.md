@@ -293,11 +293,11 @@ for (let i=0; i<6; ++i) {
 // Bostingtleaur
 // Seat
 
-randomTextGenerator.forget("Dallas");
-randomTextGenerator.forget("Detroit");
-randomTextGenerator.forget("Denver");
-randomTextGenerator.forget("Boston");
-randomTextGenerator.forget("Beaumont");
+randomTextGenerator.forgetRight("Dallas");
+randomTextGenerator.forgetRight("Detroit");
+randomTextGenerator.forgetRight("Denver");
+randomTextGenerator.forgetRight("Boston");
+randomTextGenerator.forget("Beaumont"); // forget is an alias for forgetRight.
 randomTextGenerator.forget("Bozeman");
 
 for (let i=0; i<6; ++i) {
@@ -345,3 +345,32 @@ If `true` the input is not treated like a word, but rather like a part of a word
 <br/>
 
 Returns nothing.
+
+### predictCharacter
+Similar to [lengthen](#lengthen), but gives you only the next predicted character.
+#### Syntax
+```js
+randomTextGenerator.predictCharacter(splittedWord);
+```
+```splittedWord``` - **array** of **string**s<br/>
+Returns **string**.
+#### Example
+```js
+let presidents=["Trmup", "Obama", "Bush", "Clinton", "Bush", "Reagan", "Carter"];
+for (let president of presidents) randomTextGenerator.learnExample(president.split(""));
+
+for (let i=0; i<10; ++i) {
+	let character=randomTextGenerator.predict("Oba".split(""));
+	console.log(character);
+}
+// n
+// m
+// m
+// r
+// m
+// r
+// n
+//  (the default end of a word character)
+// r
+// n
+```
