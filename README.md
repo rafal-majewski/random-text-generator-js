@@ -370,6 +370,71 @@ Returns nothing.
 
 #### Example
 ```js
+randomTextGenerator.learn("Trump");
+randomTextGenerator.learn("Obama");
+randomTextGenerator.learn("Bush");
+randomTextGenerator.learn("Clinton");
+randomTextGenerator.learn("Reagan");
+randomTextGenerator.learn("Carter");
+randomTextGenerator.learn("Ford");
+randomTextGenerator.learn("Nixon");
+randomTextGenerator.learn("Johnson");
+randomTextGenerator.learn("Kennedy");
+randomTextGenerator.learn("Eisenhower");
+randomTextGenerator.learn("Truman");
+randomTextGenerator.learn("Roosevelt");
+randomTextGenerator.learn("Hoover");
+randomTextGenerator.learn("Coolidge");
+randomTextGenerator.learn("Harding");
+
+for (let i=0; i<4; ++i) {
+	let character=randomTextGenerator.predictRight("H");
+	console.log(character);
+}
+// a
+// o
+// a
+// a
+
+for (let i=0; i<4; ++i) {
+	let character=randomTextGenerator.predictRight("Car");
+	console.log(character);
+}
+// t
+// d
+// d
+// t
+
+for (let i=0; i<4; ++i) {
+	let character=randomTextGenerator.predictRight("John");
+	console.log(character);
+}
+// s
+// t
+// \3
+// h
+```
+
+### predictCharacterLeft
+Predicts the next character.
+#### Syntax
+```js
+randomTextGenerator.predictLeft(text, origins, isRaw, obeyLimit);
+```
+- **text** - string or array of strings<br/>
+Text to predict next character from.<br/>
+- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsLeft)`<br/>
+Specifies the origins allowed in the generation process<br/>
+- **isRaw** - *optional*, boolean, by default `false`<br/>
+If `true` the input is not treated like a word, but rather like a part of a word.<br/>
+- **obeyLimit** - *optional*, boolean, by default `false`<br/>
+If `true` the generator obeys the minimal and maximal length boundaries while generating.<br/>
+<br/>
+
+Returns nothing.
+
+#### Example
+```js
 randomTextGenerator.learnLeft("Trump");
 randomTextGenerator.learnLeft("Obama");
 randomTextGenerator.learnLeft("Bush");

@@ -1,46 +1,46 @@
 const RandomTextGenerator=require("./random_text_generator_node.js")({legacy: false});
 let randomTextGenerator=new RandomTextGenerator();
 
-randomTextGenerator.learnLeft("Trump");
-randomTextGenerator.learnLeft("Obama");
-randomTextGenerator.learnLeft("Bush");
-randomTextGenerator.learnLeft("Clinton");
-randomTextGenerator.learnLeft("Reagan");
-randomTextGenerator.learnLeft("Carter");
-randomTextGenerator.learnLeft("Ford");
-randomTextGenerator.learnLeft("Nixon");
-randomTextGenerator.learnLeft("Johnson");
-randomTextGenerator.learnLeft("Kennedy");
-randomTextGenerator.learnLeft("Eisenhower");
-randomTextGenerator.learnLeft("Truman");
-randomTextGenerator.learnLeft("Roosevelt");
-randomTextGenerator.learnLeft("Hoover");
-randomTextGenerator.learnLeft("Coolidge");
-randomTextGenerator.learnLeft("Harding");
+randomTextGenerator.learn("Trump");
+randomTextGenerator.learn("Obama");
+randomTextGenerator.learn("Bush");
+randomTextGenerator.learn("Clinton");
+randomTextGenerator.learn("Reagan");
+randomTextGenerator.learn("Carter");
+randomTextGenerator.learn("Ford");
+randomTextGenerator.learn("Nixon");
+randomTextGenerator.learn("Johnson");
+randomTextGenerator.learn("Kennedy");
+randomTextGenerator.learn("Eisenhower");
+randomTextGenerator.learn("Truman");
+randomTextGenerator.learn("Roosevelt");
+randomTextGenerator.learn("Hoover");
+randomTextGenerator.learn("Coolidge");
+randomTextGenerator.learn("Harding");
 
 for (let i=0; i<4; ++i) {
-	let character=randomTextGenerator.predictLeft("ng");
-	console.log(character);
-}
-// o
-// h
-// e
-// o
-
-for (let i=0; i<4; ++i) {
-	let character=randomTextGenerator.predictLeft("n");
+	let character=randomTextGenerator.predictRight("H");
 	console.log(character);
 }
 // a
 // o
-// o
-// o
+// a
+// a
 
 for (let i=0; i<4; ++i) {
-	let character=randomTextGenerator.predictLeft("hower");
+	let character=randomTextGenerator.predictRight("Car");
+	console.log(character);
+}
+// t
+// d
+// d
+// t
+
+for (let i=0; i<4; ++i) {
+	let character=randomTextGenerator.predictRight("John");
 	console.log(character);
 }
 // s
-// n
-// n
-// n
+// t
+// \3
+// h
