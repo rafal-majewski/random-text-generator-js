@@ -109,7 +109,7 @@ Teaches the generator a new word (left -> right).
 randomTextGenerator.learnRight(example, origin, multiplier, isRaw);
 ```
 - **example** - string or array of strings<br/>
-- **origin** - *optional*, string, by default `_default`<br/>
+- **origin** - *optional*, string, by default `"_default"`<br/>
 Specifies the origin of a word.<br/>
 - **multiplier** - *optional*, number, by default `1`<br/>
 The importance of this example.<br/>
@@ -158,7 +158,7 @@ Teaches the generator a new word (right -> left).
 randomTextGenerator.learnLeft(example, origin, multiplier, isRaw);
 ```
 - **example** - string or array of strings<br/>
-- **origin** - *optional*, string, by default `_default`<br/>
+- **origin** - *optional*, string, by default `"_default"`<br/>
 Specifies the origin of a word.<br/>
 - **multiplier** - *optional*, number, by default `1`<br/>
 The importance of this example.<br/>
@@ -212,7 +212,7 @@ Calls both [learnRight](#learn-right) and [learnLeft](#learn-left).
 randomTextGenerator.learnBoth(example, origin, multiplier, isRaw);
 ```
 - **example** - string or array of strings<br/>
-- **origin** - *optional*, string, by default `_default`<br/>
+- **origin** - *optional*, string, by default `"_default"`<br/>
 Specifies the origin of a word.<br/>
 - **multiplier** - *optional*, number, by default `1`<br/>
 The importance of this example.<br/>
@@ -252,6 +252,7 @@ for (let i=0; i<4; ++i) {
 
 ### forget
 An alias for [forgetRight](#forget-right).
+
 ### forgetRight
 Unteaches the generator a word (left -> right).
 #### Syntax
@@ -259,7 +260,7 @@ Unteaches the generator a word (left -> right).
 randomTextGenerator.forgetRight(example, origin, multiplier, isRaw);
 ```
 - **example** - string or array of strings<br/>
-- **origin** - *optional*, string, by default `_default`<br/>
+- **origin** - *optional*, string, by default `"_default"`<br/>
 Specifies the origin of a word.<br/>
 - **multiplier** - *optional*, number, by default `1`<br/>
 The importance of this example.<br/>
@@ -319,7 +320,7 @@ Unteaches the generator a word (right -> left).
 randomTextGenerator.forgetLeft(example, origin, multiplier, isRaw);
 ```
 - **example** - string or array of strings<br/>
-- **origin** - *optional*, string, by default `_default`<br/>
+- **origin** - *optional*, string, by default `"_default"`<br/>
 Specifies the origin of a word.<br/>
 - **multiplier** - *optional*, number, by default `1`<br/>
 The importance of this example.<br/>
@@ -336,7 +337,7 @@ Calls both [forgetRight](#forget-right) and [forgetLeft](#forget-left).
 randomTextGenerator.forgetBoth(example, origin, multiplier, isRaw);
 ```
 - **example** - string or array of strings<br/>
-- **origin** - *optional*, string, by default `_default`<br/>
+- **origin** - *optional*, string, by default `"_default"`<br/>
 Specifies the origin of a word.<br/>
 - **multiplier** - *optional*, number, by default `1`<br/>
 The importance of this example.<br/>
@@ -347,30 +348,69 @@ If `true` the input is not treated like a word, but rather like a part of a word
 Returns nothing.
 
 ### predictCharacter
-Similar to [lengthen](#lengthen), but gives you only the next predicted character.
+An alias for [predictCharacterRight](#predict-character-right).
+
+### predictCharacterRight
+Predicts the next character.
 #### Syntax
 ```js
-randomTextGenerator.predictCharacter(splittedWord);
+randomTextGenerator.predictRight(text, origins, isRaw, obeyLimit);
 ```
-```splittedWord``` - **array** of **string**s<br/>
-Returns **string**.
+- **text** - string or array of strings<br/>
+Text to predict next character from.<br/>
+- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsRight)`<br/>
+Specifies the origins allowed in the generation process<br/>
+- **isRaw** - *optional*, boolean, by default `false`<br/>
+If `true` the input is not treated like a word, but rather like a part of a word.<br/>
+- **obeyLimit** - *optional*, boolean, by default `false`<br/>
+If `true` the generator obeys the minimal and maximal length boundaries while generating.<br/>
+<br/>
+
+Returns nothing.
+
 #### Example
 ```js
-let presidents=["Trmup", "Obama", "Bush", "Clinton", "Bush", "Reagan", "Carter"];
-for (let president of presidents) randomTextGenerator.learnExample(president.split(""));
+randomTextGenerator.learnLeft("Trump");
+randomTextGenerator.learnLeft("Obama");
+randomTextGenerator.learnLeft("Bush");
+randomTextGenerator.learnLeft("Clinton");
+randomTextGenerator.learnLeft("Reagan");
+randomTextGenerator.learnLeft("Carter");
+randomTextGenerator.learnLeft("Ford");
+randomTextGenerator.learnLeft("Nixon");
+randomTextGenerator.learnLeft("Johnson");
+randomTextGenerator.learnLeft("Kennedy");
+randomTextGenerator.learnLeft("Eisenhower");
+randomTextGenerator.learnLeft("Truman");
+randomTextGenerator.learnLeft("Roosevelt");
+randomTextGenerator.learnLeft("Hoover");
+randomTextGenerator.learnLeft("Coolidge");
+randomTextGenerator.learnLeft("Harding");
 
-for (let i=0; i<10; ++i) {
-	let character=randomTextGenerator.predict("Oba".split(""));
+for (let i=0; i<4; ++i) {
+	let character=randomTextGenerator.predictLeft("ng");
 	console.log(character);
 }
+// o
+// h
+// e
+// o
+
+for (let i=0; i<4; ++i) {
+	let character=randomTextGenerator.predictLeft("n");
+	console.log(character);
+}
+// a
+// o
+// o
+// o
+
+for (let i=0; i<4; ++i) {
+	let character=randomTextGenerator.predictLeft("hower");
+	console.log(character);
+}
+// s
 // n
-// m
-// m
-// r
-// m
-// r
 // n
-//  (the default end of a word character)
-// r
 // n
 ```

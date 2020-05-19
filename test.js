@@ -1,46 +1,46 @@
 const RandomTextGenerator=require("./random_text_generator_node.js")({legacy: false});
 let randomTextGenerator=new RandomTextGenerator();
 
-randomTextGenerator.learn("Trump");
-randomTextGenerator.learn("Obama");
-randomTextGenerator.learn("Bush");
-randomTextGenerator.learn("Clinton");
-randomTextGenerator.learn("Reagan");
-randomTextGenerator.learn("Carter");
-randomTextGenerator.learn("Ford");
-randomTextGenerator.learn("Nixon");
-randomTextGenerator.learn("Johnson");
-randomTextGenerator.learn("Kennedy");
-randomTextGenerator.learn("Eisenhower");
-randomTextGenerator.learn("Truman");
-randomTextGenerator.learn("Roosevelt");
-randomTextGenerator.learn("Hoover");
+randomTextGenerator.learnLeft("Trump");
+randomTextGenerator.learnLeft("Obama");
+randomTextGenerator.learnLeft("Bush");
+randomTextGenerator.learnLeft("Clinton");
+randomTextGenerator.learnLeft("Reagan");
+randomTextGenerator.learnLeft("Carter");
+randomTextGenerator.learnLeft("Ford");
+randomTextGenerator.learnLeft("Nixon");
+randomTextGenerator.learnLeft("Johnson");
+randomTextGenerator.learnLeft("Kennedy");
+randomTextGenerator.learnLeft("Eisenhower");
+randomTextGenerator.learnLeft("Truman");
+randomTextGenerator.learnLeft("Roosevelt");
+randomTextGenerator.learnLeft("Hoover");
+randomTextGenerator.learnLeft("Coolidge");
+randomTextGenerator.learnLeft("Harding");
 
-for (let i=0; i<6; ++i) {
-	let name=randomTextGenerator.generate();
-	console.log(name);
+for (let i=0; i<4; ++i) {
+	let character=randomTextGenerator.predictLeft("ng");
+	console.log(character);
 }
-// Den
-// Seymouver
-// Bozemat
-// Vas
-// Bostingtleaur
-// Seat
+// o
+// h
+// e
+// o
 
-randomTextGenerator.forget("Dallas");
-randomTextGenerator.forget("Detroit");
-randomTextGenerator.forget("Denver");
-randomTextGenerator.forget("Boston");
-randomTextGenerator.forget("Beaumont");
-randomTextGenerator.forget("Bozeman");
-
-for (let i=0; i<6; ++i) {
-	let name=randomTextGenerator.generate();
-	console.log(name);
+for (let i=0; i<4; ++i) {
+	let character=randomTextGenerator.predictLeft("n");
+	console.log(character);
 }
-// Seymour
-// Auver
-// Seastleasttleymon
-// Vancouveymouver
-// Seymon
-// Watler
+// a
+// o
+// o
+// o
+
+for (let i=0; i<4; ++i) {
+	let character=randomTextGenerator.predictLeft("hower");
+	console.log(character);
+}
+// s
+// n
+// n
+// n
