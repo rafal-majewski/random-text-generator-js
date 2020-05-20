@@ -710,7 +710,7 @@ randomTextGenerator.generateBoth(text, origins);
 ```
 - **text** - string or array of strings<br/>
 Text to predict next character from.<br/>
-- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsRight)` combined with `Object.keys(randomTextGenerator.weightsLeft)`<br/>
+- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsRight)` combined with `Object.keys(randomTextGenerator.weightsLeft)`.<br/>
 Specifies the origins allowed in the generation process.<br/>
 
 Returns string. `randomTextGenerator.splitter` is used automatically to join characters.
@@ -898,7 +898,8 @@ The json can be obtained from [saveWeightsToJson](#save-weights-to-json).
 ```js
 randomTextGenerator.loadWeightsFromJson(json);
 ```
-```json``` - **string** containing the generator's weights saved in the json format.<br/>
+```json``` - string.
+The generator's weights saved in the json format.<br/><br/>
 Returns nothing.
 #### Example
 ```js
