@@ -536,7 +536,7 @@ for (let i=0; i<4; ++i) {
 ```
 
 ### predictLeft
-Predicts the next character.
+Predicts the next character on the left.
 #### Syntax
 ```js
 randomTextGenerator.predictLeft(text, origins, isRaw, obeyLimit);
