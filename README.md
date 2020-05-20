@@ -26,6 +26,10 @@ Note: Generated words in some examples may look odd, that's because of not suffi
 - [License](#License)
 - [Obtaining](#obtaining)
 - [Getting Started](#getting-started)
+- [Examples](#examples)
+	- [Usernames](#examples-usernames)
+	- [Multiple origins generation](#examples-multiple-origins)
+	- [English Lorem Ipsum](#examples-english-lorem-ipsum)
 - [Functions](#functions)
 	- [learn](#learn)
 	- [learnRight](#learn-right)
@@ -114,6 +118,97 @@ let settings={
 let randomTextGenerator=new RandomTextGenerator(settings);
 // Or initialize it with the default settings
 let randomTextGenerator=new RandomTextGenerator();
+```
+
+## Examples
+### Usernames
+```js
+const RandomTextGenerator=require("random-text-generator.js")({legacy: false});
+
+// Create an instance of the generator with default settings.
+let randomTextGenerator=new RandomTextGenerator();
+
+// Make an array with some usernames.
+let usernames=["StinkyPoop", "Alextron234", "BattleDash", "berkey10", "Ezblox23", "robiko858", "zakizakowski", "MrArtur1337", "AzisDeus", "AustrianPainter1889", "pomidorek2pl", "JoeMamma", "MafiaBoss75", "SciManDan", "siuras_ogoras986", "jacob.flix", "malario", "BenDrowned", "pickupthefox", "okboomer", "GHPL", "Firstbober"];
+
+// Pass every username to the generator.
+for (let username of usernames) randomTextGenerator.learn(username);
+
+// console.log twelve new nicknames.
+for (let i=0; i<12; ++i) {
+	let username=randomTextGenerator.generate();
+	console.log(username);
+}
+// AleDras9
+// JoreMamaliky1886
+// ziriaBateDeDas_ownkiziMrsDer
+// Mrey10
+// Ezidoomiskblex
+// oeMan
+// jan
+// Fioomer
+// Alox
+// GHPaBober
+// zakizbi
+// Ezakizako889
+```
+
+### Multiple Origins Generation
+```js
+const RandomTextGenerator=require("random-text-generator")({legacy: false});
+
+// Create an instance of the generator with default settings.
+let randomTextGenerator=new RandomTextGenerator();
+
+let americanCities=["New York","Los Angeles","Chicago","Houston","Phoenix","Philadelphia","San Antonio","San Diego","Dallas","San Jose","Austin","Jacksonville","Fort Worth","Columbus","San Francisco","Charlotte","Indianapolis","Seattle","Denver","Washington","Boston","El Paso","Detroit","Nashville","Portland","Memphis","Oklahoma City","Las Vegas","Louisville","Baltimore","Milwaukee","Albuquerque","Tucson","Fresno","Mesa","Sacramento","Atlanta","Kansas City","Colorado Springs","Miami","Raleigh","Omaha","Long Beach","Virginia Beach","Oakland","Minneapolis","Tulsa","Arlington","Tampa","New Orleans","Wichita","Cleveland","Bakersfield","Aurora","Anaheim","Honolulu","Santa Ana","Riverside","Corpus Christi","Lexington","Stockton","Henderson","Saint Paul","St. Louis","Cincinnati","Pittsburgh","Greensboro","Anchorage","Plano","Lincoln","Orlando","Irvine","Newark","Toledo","Durham","Chula Vista","Fort Wayne","Jersey City","St. Petersburg","Laredo","Madison","Chandler","Buffalo","Lubbock","Scottsdale","Reno","Glendale","Gilbert","Winston–Salem","North Las Vegas","Norfolk","Chesapeake","Garland","Irving","Hialeah","Fremont","Boise","Richmond","Baton Rouge","Spokane","Des Moines","Tacoma","San Bernardino","Modesto","Fontana","Santa Clarita","Birmingham","Oxnard","Fayetteville","Moreno Valley","Rochester","Glendale","Huntington Beach","Salt Lake City","Grand Rapids","Amarillo","Yonkers","Aurora","Montgomery","Akron","Little Rock","Huntsville","Augusta","Port St. Lucie","Grand Prairie","Columbus","Tallahassee","Overland Park","Tempe","McKinney","Mobile","Cape Coral","Shreveport","Frisco","Knoxville","Worcester","Brownsville","Vancouver","Fort Lauderdale","Sioux Falls","Ontario","Chattanooga","Providence","Newport News","Rancho Cucamonga","Santa Rosa","Oceanside","Salem","Elk Grove","Garden Grove","Pembroke Pines","Peoria","Eugene","Corona","Cary","Springfield","Fort Collins","Jackson","Alexandria","Hayward","Lancaster","Lakewood","Clarksville","Palmdale","Salinas","Springfield","Hollywood","Pasadena","Sunnyvale","Macon","Kansas City","Pomona","Escondido","Killeen","Naperville","Joliet","Bellevue","Rockford","Savannah","Paterson","Torrance","Bridgeport","McAllen","Mesquite","Syracuse","Midland","Pasadena","Murfreesboro","Miramar","Dayton","Fullerton","Olathe","Orange","Thornton","Roseville","Denton","Waco","Surprise","Carrollton","West Valley City","Charleston","Warren","Hampton","Gainesville","Visalia","Coral Springs","Columbia","Cedar Rapids","Sterling Heights","New Haven","Stamford","Concord","Kent","Santa Clara","Elizabeth","Round Rock","Thousand Oaks","Lafayette","Athens","Topeka","Simi Valley","Fargo","Norman","Columbia","Abilene","Wilmington","Hartford","Victorville","Pearland","Vallejo","Ann Arbor","Berkeley","Allentown","Richardson","Odessa","Arvada","Cambridge","Sugar Land","Beaumont","Lansing","Evansville","Rochester","Independence","Fairfield","Provo","Clearwater","College Station","West Jordan","Carlsbad","El Monte","Murrieta","Temecula","Springfield","Palm Bay","Costa Mesa","Westminster","North Charleston","Miami Gardens","Manchester","High Point","Downey","Clovis","Pompano Beach","Pueblo","Elgin","Lowell","Antioch","West Palm Beach","Peoria","Everett","Ventura","Centennial","Lakeland","Gresham","Richmond","Billings","Inglewood","Broken Arrow","Sandy Springs","Jurupa Valley","Hillsboro","Waterbury","Santa Maria","Boulder","Greeley","Daly City","Meridian","Lewisville","Davie","West Covina","League City","Tyler","Norwalk","San Mateo","Green Bay","Wichita Falls","Sparks","Lakewood","Burbank","Rialto","Allen","El Cajon","Las Cruces","Renton","Davenport","South Bend","Vista","Tuscaloosa","Clinton","Edison","Woodbridge","San Angelo","Kenosha","Vacaville"];
+
+let polishCities=["Warszawa","Kraków","Łódź","Wrocław","Poznań","Gdańsk","Szczecin","Bydgoszcz","Lublin","Białystok","Katowice","Gdynia","Częstochowa","Radom","Toruń","Sosnowiec","Kielce,Rzeszów","Gliwice","Zabrze","Olsztyn","Bielsko-Biała","Bytom","Zielona Góra","Rybnik","Ruda Śląska","Opole","Tychy","Gorzów Wielkopolski","Płock","Dąbrowa Górnicza","Elbląg","Wałbrzych","Włocławek","Tarnów","Chorzów","Koszalin","Kalisz"]
+
+// Teach the generator the names of the cities, but preserve its origin.
+for (let americanCity of americanCities) randomTextGenerator.learn(americanCity, "americanCity");
+for (let polishCity of polishCities) randomTextGenerator.learn(polishCity, "polishCity");
+
+// console.log twelve new city names.
+for (let i=0; i<12; ++i) {
+	// randomTextGenerator.generate(text, origins, isRaw);
+	// we are going to leave the "text" field null, because we don't want any specific characters at the beginning.
+	// origins is an array where you can specify the origins you want the generator to generate from, in this case you can leave it as null, because by default the generator uses all origins
+	let city=randomTextGenerator.generate(null, ["polishCity", "americanCity"]); //
+	console.log(city);
+}
+// San Jortisvina
+// Mouleghornówek
+// Glea
+// Fa
+// Hinicesalmaiorolisz
+// Sangandbrzea
+// Watins Clencin
+// Bakevilente
+// Worte
+// Daberainghanderg
+// Ork
+// Sa
+
+// The output should contain features of both training datasets.
+```
+
+### English Lorem Ipsum
+```js
+const RandomTextGenerator=require("random-text-generator.js")({legacy: false});
+
+// Create an instance of the generator. Because you want to generate a text you should set the splitter to " " and use a smaller deepness that the default 40 (to save memory and training time). In this case the deepness says how many of previous words determine the following words.
+let randomTextGenerator=new RandomTextGenerator({splitter: " ", deepness: 8});
+
+
+// Make a string with a long text. Source: https://en.wikipedia.org/wiki/Nineteen_Eighty-Four.
+let exemplaryText=`Nineteen Eighty-Four: A Novel, often published as 1984, is a dystopian novel by English novelist George Orwell. It was published in June 1949 by Secker & Warburg as Orwell's ninth and final book completed in his lifetime. The story was mostly written at Barnhill, a farmhouse on the Scottish island of Jura, at times while Orwell suffered from severe tuberculosis. Thematically, Nineteen Eighty-Four centres on the consequences of government over-reach, totalitarianism, and repressive regimentation of all persons and behaviours within society. The story takes place in an imagined future, the year 1984, when much of the world has fallen victim to perpetual war, omnipresent government surveillance, historical negationism and propaganda. Great Britain, known as Airstrip One, has become a province of a superstate named Oceania that is ruled by the Party who employ the Thought Police to persecute individuality and independent thinking. Big Brother, the leader of the Party, enjoys an intense cult of personality despite the fact that he may not even exist. The protagonist, Winston Smith, is a diligent and skilful rank-and-file worker and Party member who secretly hates the Party and dreams of rebellion. He enters a forbidden relationship with a co-worker, Julia. Nineteen Eighty-Four has become a classic literary example of political and dystopian fiction. Many terms used in the novel have entered common usage, including Big Brother, doublethink, thoughtcrime, Newspeak, Room 101, telescreen, 2 + 2 = 5, prole, and memory hole. Nineteen Eighty-Four also popularised the adjective "Orwellian", connoting things such as official deception, secret surveillance, brazenly misleading terminology, and manipulation of recorded history by a totalitarian or authoritarian state. Time included it on its one hundred best English-language novels from 1923 to 2005. It was placed on the Modern Library's 100 Best Novels, reaching No. 13 on the editors' list and No. 6 on the readers' list. In 2003, the novel was listed at No. 8 on The Big Read survey by the BBC. Parallels have been drawn between the novel's subject matter and real life instances of totalitarianism, mass surveillance, and violations of freedom of expression among other themes.`;
+
+// Pass the exemplaryText to the generator. You should split it at first, because it is a text.
+randomTextGenerator.learn(exemplaryText.split(" "));
+
+// console.log the generated Lorem Ipsum
+console.log(randomTextGenerator.generate());
+// Nineteen Eighty-Four: A Novel, often published as 1984, is a dystopian fiction. Many terms used in the Scottish island of rebellion. He enters a dystopian fiction. Many terms used in June 1949 by Secker & Warburg as 1984, when much of a co-worker, Julia. Nineteen Eighty-Four has become a classic literary example of Jura, at Barnhill, a dystopian novel by Secker & Warburg as Airstrip One, has fallen victim to perpetual war, omnipresent government over-reach, totalitarianism, and memory hole. Nineteen Eighty-Four has become a classic literary example of all persons and final book completed in an imagined future, the adjective "Orwellian", connoting things such as Airstrip One, has become a province of political and skilful rank-and-file worker and Party who secretly hates the Scottish island of totalitarianism, mass surveillance, and propaganda. Great Britain, known as 1984, when much of freedom of totalitarianism, and real life instances of a province of rebellion. He enters a classic literary example of political and real life instances of all persons and dreams of totalitarianism, and propaganda. Great Britain, known as 1984, when much of totalitarianism, mass surveillance, historical negationism and repressive regimentation of freedom of freedom of all persons and Party who employ the consequences of recorded history by a dystopian novel was published in the Scottish island of rebellion. He enters a dystopian novel have entered common usage, including Big Brother, the leader of Jura, at times while Orwell suffered from 1923 to persecute individuality and independent thinking. Big Brother, the BBC. Parallels have been drawn between the year 1984, when much of political and independent thinking. Big Brother, doublethink, thoughtcrime, Newspeak, Room 101, telescreen, 2 = 5, prole, and violations of expression among other themes.
 ```
 
 ## Functions
@@ -671,7 +766,7 @@ If `true` the input is not treated like a word, but rather like a part of a word
 Returns string.
 #### Example
 ```js
-let cities=["New York","Los Angeles","Chicago","Houston","Phoenix","Philadelphia","San Antonio","San Diego","Dallas","San Jose","Austin","Jacksonville","Fort Worth","Columbus","San Francisco","Charlotte","Indianapolis","Seattle","Denver","Washington","Boston","El Paso","Detroit","Nashville","Portland","Memphis","Oklahoma City","Las Vegas","Louisville","Baltimore","Milwaukee","Albuquerque","Tucson","Fresno","Mesa","Sacramento","Atlanta","Kansas City","Colorado Springs","Miami","Raleigh","Omaha","Long Beach","Virginia Beach","Oakland","Minneapolis","Tulsa","Arlington","Tampa","New Orleans","Wichita","Cleveland","Bakersfield","Aurora","Anaheim","Honolulu","Santa Ana","Riverside","Corpus Christi","Lexington","Stockton","Henderson","Saint Paul","St. Louis","Cincinnati","Pittsburgh","Greensboro","Anchorage[p]","Plano","Lincoln","Orlando","Irvine","Newark","Toledo","Durham","Chula Vista","Fort Wayne","Jersey City","St. Petersburg","Laredo","Madison","Chandler","Buffalo","Lubbock","Scottsdale","Reno","Glendale","Gilbert","Winston–Salem","North Las Vegas","Norfolk","Chesapeake","Garland","Irving","Hialeah","Fremont","Boise","Richmond","Baton Rouge","Spokane","Des Moines","Tacoma","San Bernardino","Modesto","Fontana","Santa Clarita","Birmingham","Oxnard","Fayetteville","Moreno Valley","Rochester","Glendale","Huntington Beach","Salt Lake City","Grand Rapids","Amarillo","Yonkers","Aurora","Montgomery","Akron","Little Rock","Huntsville","Augusta","Port St. Lucie","Grand Prairie","Columbus[u]","Tallahassee","Overland Park","Tempe","McKinney","Mobile","Cape Coral","Shreveport","Frisco","Knoxville","Worcester","Brownsville","Vancouver","Fort Lauderdale","Sioux Falls","Ontario","Chattanooga","Providence","Newport News","Rancho Cucamonga","Santa Rosa","Oceanside","Salem","Elk Grove","Garden Grove","Pembroke Pines","Peoria","Eugene","Corona","Cary","Springfield","Fort Collins","Jackson","Alexandria","Hayward","Lancaster","Lakewood","Clarksville","Palmdale","Salinas","Springfield","Hollywood","Pasadena","Sunnyvale","Macon[w]","Kansas City[x]","Pomona","Escondido","Killeen","Naperville","Joliet","Bellevue","Rockford","Savannah","Paterson","Torrance","Bridgeport","McAllen","Mesquite","Syracuse","Midland","Pasadena","Murfreesboro","Miramar","Dayton","Fullerton","Olathe","Orange","Thornton","Roseville","Denton","Waco","Surprise","Carrollton","West Valley City","Charleston","Warren","Hampton","Gainesville","Visalia","Coral Springs","Columbia","Cedar Rapids","Sterling Heights","New Haven","Stamford","Concord","Kent","Santa Clara","Elizabeth","Round Rock","Thousand Oaks","Lafayette[y]","Athens[z]","Topeka","Simi Valley","Fargo","Norman","Columbia","Abilene","Wilmington","Hartford","Victorville","Pearland","Vallejo","Ann Arbor","Berkeley","Allentown","Richardson","Odessa","Arvada","Cambridge","Sugar Land","Beaumont","Lansing","Evansville","Rochester","Independence","Fairfield","Provo","Clearwater","College Station","West Jordan","Carlsbad","El Monte","Murrieta","Temecula","Springfield","Palm Bay","Costa Mesa","Westminster","North Charleston","Miami Gardens","Manchester","High Point","Downey","Clovis","Pompano Beach","Pueblo","Elgin","Lowell","Antioch","West Palm Beach","Peoria","Everett","Ventura","Centennial","Lakeland","Gresham","Richmond","Billings","Inglewood","Broken Arrow","Sandy Springs","Jurupa Valley","Hillsboro","Waterbury","Santa Maria","Boulder","Greeley","Daly City","Meridian","Lewisville","Davie","West Covina","League City","Tyler","Norwalk","San Mateo","Green Bay","Wichita Falls","Sparks","Lakewood","Burbank","Rialto","Allen","El Cajon","Las Cruces","Renton","Davenport","South Bend","Vista","Tuscaloosa","Clinton","Edison","Woodbridge","San Angelo","Kenosha","Vacaville"];
+let cities=["New York","Los Angeles","Chicago","Houston","Phoenix","Philadelphia","San Antonio","San Diego","Dallas","San Jose","Austin","Jacksonville","Fort Worth","Columbus","San Francisco","Charlotte","Indianapolis","Seattle","Denver","Washington","Boston","El Paso","Detroit","Nashville","Portland","Memphis","Oklahoma City","Las Vegas","Louisville","Baltimore","Milwaukee","Albuquerque","Tucson","Fresno","Mesa","Sacramento","Atlanta","Kansas City","Colorado Springs","Miami","Raleigh","Omaha","Long Beach","Virginia Beach","Oakland","Minneapolis","Tulsa","Arlington","Tampa","New Orleans","Wichita","Cleveland","Bakersfield","Aurora","Anaheim","Honolulu","Santa Ana","Riverside","Corpus Christi","Lexington","Stockton","Henderson","Saint Paul","St. Louis","Cincinnati","Pittsburgh","Greensboro","Anchorage","Plano","Lincoln","Orlando","Irvine","Newark","Toledo","Durham","Chula Vista","Fort Wayne","Jersey City","St. Petersburg","Laredo","Madison","Chandler","Buffalo","Lubbock","Scottsdale","Reno","Glendale","Gilbert","Winston–Salem","North Las Vegas","Norfolk","Chesapeake","Garland","Irving","Hialeah","Fremont","Boise","Richmond","Baton Rouge","Spokane","Des Moines","Tacoma","San Bernardino","Modesto","Fontana","Santa Clarita","Birmingham","Oxnard","Fayetteville","Moreno Valley","Rochester","Glendale","Huntington Beach","Salt Lake City","Grand Rapids","Amarillo","Yonkers","Aurora","Montgomery","Akron","Little Rock","Huntsville","Augusta","Port St. Lucie","Grand Prairie","Columbus","Tallahassee","Overland Park","Tempe","McKinney","Mobile","Cape Coral","Shreveport","Frisco","Knoxville","Worcester","Brownsville","Vancouver","Fort Lauderdale","Sioux Falls","Ontario","Chattanooga","Providence","Newport News","Rancho Cucamonga","Santa Rosa","Oceanside","Salem","Elk Grove","Garden Grove","Pembroke Pines","Peoria","Eugene","Corona","Cary","Springfield","Fort Collins","Jackson","Alexandria","Hayward","Lancaster","Lakewood","Clarksville","Palmdale","Salinas","Springfield","Hollywood","Pasadena","Sunnyvale","Macon","Kansas City","Pomona","Escondido","Killeen","Naperville","Joliet","Bellevue","Rockford","Savannah","Paterson","Torrance","Bridgeport","McAllen","Mesquite","Syracuse","Midland","Pasadena","Murfreesboro","Miramar","Dayton","Fullerton","Olathe","Orange","Thornton","Roseville","Denton","Waco","Surprise","Carrollton","West Valley City","Charleston","Warren","Hampton","Gainesville","Visalia","Coral Springs","Columbia","Cedar Rapids","Sterling Heights","New Haven","Stamford","Concord","Kent","Santa Clara","Elizabeth","Round Rock","Thousand Oaks","Lafayette","Athens","Topeka","Simi Valley","Fargo","Norman","Columbia","Abilene","Wilmington","Hartford","Victorville","Pearland","Vallejo","Ann Arbor","Berkeley","Allentown","Richardson","Odessa","Arvada","Cambridge","Sugar Land","Beaumont","Lansing","Evansville","Rochester","Independence","Fairfield","Provo","Clearwater","College Station","West Jordan","Carlsbad","El Monte","Murrieta","Temecula","Springfield","Palm Bay","Costa Mesa","Westminster","North Charleston","Miami Gardens","Manchester","High Point","Downey","Clovis","Pompano Beach","Pueblo","Elgin","Lowell","Antioch","West Palm Beach","Peoria","Everett","Ventura","Centennial","Lakeland","Gresham","Richmond","Billings","Inglewood","Broken Arrow","Sandy Springs","Jurupa Valley","Hillsboro","Waterbury","Santa Maria","Boulder","Greeley","Daly City","Meridian","Lewisville","Davie","West Covina","League City","Tyler","Norwalk","San Mateo","Green Bay","Wichita Falls","Sparks","Lakewood","Burbank","Rialto","Allen","El Cajon","Las Cruces","Renton","Davenport","South Bend","Vista","Tuscaloosa","Clinton","Edison","Woodbridge","San Angelo","Kenosha","Vacaville"];
 
 cities.forEach((city)=>{
 	randomTextGenerator.learnRight(city);
