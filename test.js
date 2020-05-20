@@ -1,13 +1,8 @@
 const RandomTextGenerator=require("./random_text_generator_node.js")({legacy: false});
 let randomTextGenerator=new RandomTextGenerator();
 
-// let petsNames=["Rosie", "Charlie", "Alfie", "Molly", "Bella", "Poppy", "Daisy", "Cleo", "Chloe", "Angel", "Dusty", "Bailey", "Mittens", "Casey", "Socks", "Snowball", "Simon", "Teddy", "Lola", "Millie", "Bella", "Tilly", "Coco", "Luna", "Phoebe"];
+randomTextGenerator.loadWeightsFromJson(String.raw`{"weightsLeft":{},"weightsRight":{"_default":{"1":{"2":1,"3":1,"6":1,"\u0003":2},"2":{"1":1,"2":1},"3":{"3":1,"7":1},"\u0002":{"i":2,"B":1,"k":2,"P":1,"b":1,"E":1,"D":1,"K":1,"p":1,"G":2,"A":1,"M":3,"g":1,"F":1,"Y":1,"d":1},"\u0002i":{"p":1,"c":1},"i":{"p":1,"o":2,"\u0003":2,"c":3,"g":2,"b":1,"a":1," ":1,"r":1,"t":1},"p":{"o":1,"p":1,"a":1,"e":1},"o":{"c":1,"s":4,"o":2,"l":1,"\u0003":1,"n":1,"z":1,"t":1,"b":1},"c":{"a":1,"h":3,"r":2},"a":{"1":1,"k":1,"\u0003":2,"a":2,"r":2,"p":1,"O":1,"m":1,"z":1,"l":1,"x":1},"k":{"\u0003":2,"o":1,"e":1,"u":1},"B":{"o":1,"e":1},"os":{"z":1,"a":1,"w":1,"\u0003":1},"s":{"z":1,"a":1,"y":1,"w":1,"\u0003":1,"t":1,"h":1},"z":{"e":1,"i":1,"\u0003":1,"a":1},"e":{"k":1,"q":1,"i":1,"w":1,"l":1,"x":1,"a":1,"\u0003":1,"r":1},"\u0002k":{"o":1,"u":1},"P":{"s":1,"L":1},"ch":{"a":2,"i":1},"cha":{"a":1,"l":1},"h":{"a":2,"i":1,"e":1},"ha":{"a":1,"l":1},"aa":{"1":1,"\u0003":1},"b":{"o":2,"e":2,"i":1},"bo":{"o":1,"b":1},"oo":{"s":2},"oos":{"w":1,"\u0003":1},"w":{"o":2},"wo":{"o":1,"z":1},"io":{"l":1,"t":1},"l":{"1":1,"e":2,"a":1},"le":{"q":1,"x":1},"ar":{"k":1,"\u0003":1},"r":{"1":1,"k":1,"o":1,"A":1,"t":1,"\u0003":2,"i":1,"s":1,"u":1},"ic":{"h":2,"r":1},"ich":{"i":1,"a":1},"ig":{"o":1,"i":1},"g":{"o":1,".":1,"i":1},"m":{"i":2},"mi":{"c":1," ":1},"cr":{"o":1,"u":1},"u":{"b":1,"r":1,"s":1},"be":{"l":1,"\u0003":1},"\u0002G":{"i":1,"H":1},"G":{"i":1,"H":1},"A":{"l":1,"r":1},"x":{"\u0003":1,"_":1},"\u0002M":{"r":1,"i":2},"M":{"r":1,"i":2},"t":{"u":1,"\u0003":1,"b":1,"c":1},"\u0002Mi":{"a":1,"c":1},"Mi":{"a":1,"c":1}}}}`);
 
-// petsNames.forEach((petName)=>{
-// 	randomTextGenerator.learn(petName);
-// });
-
-// for (let i=0; i<8; ++i) {
-// 	let name=randomTextGenerator.generate();
-// 	console.log(name);
-// }
+for (let i=0; i<12; ++i) {
+	console.log(randomTextGenerator.generate());
+}

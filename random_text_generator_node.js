@@ -376,7 +376,6 @@ RandomTextGenerator.prototype.shrinkBoth=function(origins) {
 	this._shrink(this.weightsRight, origins || Object.keys(this.weightsRight));
 };
 
-
 RandomTextGenerator.prototype.saveToJson=function() {return JSON.stringify(this);};
 RandomTextGenerator.prototype.loadFromJson=function(json) {
 	let settings=JSON.parse(json);

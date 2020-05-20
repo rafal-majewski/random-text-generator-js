@@ -39,8 +39,13 @@ Note: Generated words in some examples may look odd, that's because of not suffi
 	- [generateRight](#generate-right)
 	- [generateLeft](#generate-left)
 	- [generateBoth](#generate-both)
-
-
+	- [validate](#validate)
+	- [validateRight](#validate-right)
+	- [validateLeft](#validate-left)
+	- [shrink](#shrink)
+	- [shrinkRight](#shrink-right)
+	- [shrinkLeft](#shrink-left)
+	- [shrinkBoth](#shrink-both)
 
 ## License
 This is free and unencumbered software released into the public domain.
@@ -114,10 +119,13 @@ let randomTextGenerator=new RandomTextGenerator();
 ## Functions
 ### learn
 An alias for [learnRight](#learn-right).
+
 ### learnRight
 Teaches the generator a new word (left -> right).
 #### Syntax
 ```js
+randomTextGenerator.learn(example, origin, multiplier, isRaw);
+// or
 randomTextGenerator.learnRight(example, origin, multiplier, isRaw);
 ```
 - **example** - string or array of strings<br/>
@@ -269,6 +277,8 @@ An alias for [forgetRight](#forget-right).
 Unteaches the generator a word (left -> right).
 #### Syntax
 ```js
+randomTextGenerator.forget(example, origin, multiplier, isRaw);
+// or
 randomTextGenerator.forgetRight(example, origin, multiplier, isRaw);
 ```
 - **example** - string or array of strings<br/>
@@ -366,6 +376,8 @@ An alias for [predictRight](#predict-right).
 Predicts the next character.
 #### Syntax
 ```js
+randomTextGenerator.predict(text, origins, isRaw, obeyLimit);
+// or
 randomTextGenerator.predictRight(text, origins, isRaw, obeyLimit);
 ```
 - **text** - string or array of strings<br/>
@@ -493,9 +505,11 @@ An alias for [generateRight](#generate-right).
 Generates a new word (left -> right) or lengthens given input.
 #### Syntax
 ```js
-randomTextGenerator.learnRight(text, origins, isRaw);
+randomTextGenerator.generate(text, origins, isRaw);
+// or
+randomTextGenerator.generateRight(text, origins, isRaw);
 ```
-- **text** - string or array of strings<br/>
+- **text** - *optional*, string or array of strings<br/>
 Text to predict next character from.<br/>
 - **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsRighs)`<br/>
 Specifies the origins allowed in the generation process.<br/>
@@ -505,114 +519,305 @@ If `true` the input is not treated like a word, but rather like a part of a word
 Returns string. `randomTextGenerator.splitter` is used automatically to join characters.
 #### Example
 ```js
-let petsNames=["Daisy", "Cleo", "Chloe", "Angel", "Dusty", "Bailey", "Mittens", "Casey", "Socks", "Snowball", "Simon"];
+let petNames=["Rosie", "Charlie", "Alfie", "Molly", "Bella", "Poppy", "Daisy", "Cleo", "Chloe", "Angel", "Dusty", "Bailey", "Mittens", "Casey", "Socks", "Snowball", "Simon", "Teddy", "Lola", "Millie", "Tilly", "Coco", "Luna", "Phoebe"];
 
-petsNames.forEach((petName)=>{
+petNames.forEach((petName)=>{
 	randomTextGenerator.learn(petName);
 });
 
-for (let i=0; i<8; ++i) {
+for (let i=0; i<4; ++i) {
 	let name=randomTextGenerator.generate();
 	console.log(name);
 }
+// Phlockse
+// Anose
+// Alie
+// Be
 
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generate("M");
+	console.log(name);
+}
+// Miley
+// Mopy
+// Milly
+// Moebebeddy
+
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generate("Be");
+	console.log(name);
+}
+// Bey
+// Beddy
+// Be
+// Bey
 ```
 
-### learnLeft
-Teaches the generator a new word (right -> left).
+### generateLeft
+Generates a new word (left -> right) or lengthens given input.
 #### Syntax
 ```js
-randomTextGenerator.learnLeft(example, origin, multiplier, isRaw);
+randomTextGenerator.generateLeft(text, origins, isRaw);
 ```
-- **example** - string or array of strings<br/>
-- **origin** - *optional*, string, by default `"_default"`<br/>
-Specifies the origin of a word.<br/>
-- **multiplier** - *optional*, number, by default `1`<br/>
-The importance of this example.<br/>
+- **text** - *optional*, string or array of strings<br/>
+Text to predict next character from.<br/>
+- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsRighs)`<br/>
+Specifies the origins allowed in the generation process.<br/>
 - **isRaw** - *optional*, boolean, by default `false`<br/>
 If `true` the input is not treated like a word, but rather like a part of a word.<br/>
-<br/>
 
-Returns nothing.
+Returns string. `randomTextGenerator.splitter` is used automatically to join characters.
 #### Example
 ```js
-randomTextGenerator.learnLeft("Mark");
-randomTextGenerator.learnLeft("Henry");
-randomTextGenerator.learnLeft("Bob");
-randomTextGenerator.learnLeft("John");
-randomTextGenerator.learnLeft("David");
-randomTextGenerator.learnLeft("James");
+let petNames=["Rosie", "Charlie", "Alfie", "Molly", "Bella", "Poppy", "Daisy", "Cleo", "Chloe", "Angel", "Dusty", "Bailey", "Mittens", "Casey", "Socks", "Snowball", "Simon", "Teddy", "Lola", "Millie", "Tilly", "Coco", "Luna", "Phoebe"];
+
+petNames.forEach((petName)=>{
+	randomTextGenerator.learnLeft(petName);
+});
 
 for (let i=0; i<4; ++i) {
 	let name=randomTextGenerator.generateLeft();
 	console.log(name);
 }
-// David
-// Henry
-// Jark
-// Bob
-
-// All the names are going to end with "k"
-for (let i=0; i<4; ++i) {
-	let name=randomTextGenerator.generateLeft("k");
-	console.log(name);
-}
-// Dark
-// Bohnrk
-// Henrk
-// Jark
+// Choeo
+// Bel
+// Tiloppppy
+// Soco
 
 for (let i=0; i<4; ++i) {
-	let name=randomTextGenerator.generateLeft("y");
+	let name=randomTextGenerator.generateLeft("la");
 	console.log(name);
 }
-// Johnry
-// Bohnry
-// Jary
-// Dary
+// Mola
+// Lolla
+// Molla
+// Mola
+
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateLeft("e");
+	console.log(name);
+}
+// Lollie
+// Callie
+// Conarlie
+// Challasie
 ```
 
-### learnBoth
-Calls both [learnRight](#learn-right) and [learnLeft](#learn-left).
+### generateBoth
+Generates a new word bothways.
 #### Syntax
 ```js
-randomTextGenerator.learnBoth(example, origin, multiplier, isRaw);
+randomTextGenerator.generateBoth(text, origins);
 ```
-- **example** - string or array of strings<br/>
-- **origin** - *optional*, string, by default `"_default"`<br/>
-Specifies the origin of a word.<br/>
-- **multiplier** - *optional*, number, by default `1`<br/>
-The importance of this example.<br/>
-- **isRaw** - *optional*, boolean, by default `false`<br/>
-If `true` the input is not treated like a word, but rather like a part of a word.<br/>
-<br/>
+- **text** - string or array of strings<br/>
+Text to predict next character from.<br/>
+- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsRighs)`<br/>
+Specifies the origins allowed in the generation process.<br/>
 
+Returns string. `randomTextGenerator.splitter` is used automatically to join characters.
+#### Example
+```js
+let petNames=["Rosie", "Charlie", "Alfie", "Molly", "Bella", "Poppy", "Daisy", "Cleo", "Chloe", "Angel", "Dusty", "Bailey", "Mittens", "Casey", "Socks", "Snowball", "Simon", "Teddy", "Lola", "Millie", "Tilly", "Coco", "Luna", "Phoebe"];
+
+petNames.forEach((petName)=>{
+	randomTextGenerator.learnBoth(petName); // in order to generate bothways you have to teach the generator using .learnBoth()
+});
+
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateBoth("ll"); // the first argument is not optional, the generator cannot generate bothways out of thin air
+	console.log(name);
+}
+// Lollie
+// Dungell
+// Milla
+// Tilla
+
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateBoth("una");
+	console.log(name);
+}
+// Lunalfise
+// Lunais
+// Lunaillie
+// Luna
+
+for (let i=0; i<4; ++i) {
+	let name=randomTextGenerator.generateBoth("ar");
+	console.log(name);
+}
+// Lusebarlie
+// Barlla
+// Charly
+// Darloebaistty
+```
+
+### validate
+An alias for [validateRight](#validate-right).
+
+### validateRight
+Calculates the resemblance of a given word (left -> right) to the words the generator previously learned.
+#### Syntax
+```js
+randomTextGenerator.validate(text, origins, isRaw);
+// or
+randomTextGenerator.validateRight(text, origins, isRaw);
+```
+- **text** - string or array of strings<br/>
+Text to calculate the resemblance of.<br/>
+- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsRight)`<br/>
+Specifies the origins allowed in the generation process<br/>
+- **isRaw** - *optional*, boolean, by default `false`<br/>
+If `true` the input is not treated like a word, but rather like a part of a word.<br/><br/>
+Returns string.
+#### Example
+```js
+let cities=["New York","Los Angeles","Chicago","Houston","Phoenix","Philadelphia","San Antonio","San Diego","Dallas","San Jose","Austin","Jacksonville","Fort Worth","Columbus","San Francisco","Charlotte","Indianapolis","Seattle","Denver","Washington","Boston","El Paso","Detroit","Nashville","Portland","Memphis","Oklahoma City","Las Vegas","Louisville","Baltimore","Milwaukee","Albuquerque","Tucson","Fresno","Mesa","Sacramento","Atlanta","Kansas City","Colorado Springs","Miami","Raleigh","Omaha","Long Beach","Virginia Beach","Oakland","Minneapolis","Tulsa","Arlington","Tampa","New Orleans","Wichita","Cleveland","Bakersfield","Aurora","Anaheim","Honolulu","Santa Ana","Riverside","Corpus Christi","Lexington","Stockton","Henderson","Saint Paul","St. Louis","Cincinnati","Pittsburgh","Greensboro","Anchorage[p]","Plano","Lincoln","Orlando","Irvine","Newark","Toledo","Durham","Chula Vista","Fort Wayne","Jersey City","St. Petersburg","Laredo","Madison","Chandler","Buffalo","Lubbock","Scottsdale","Reno","Glendale","Gilbert","Winston–Salem","North Las Vegas","Norfolk","Chesapeake","Garland","Irving","Hialeah","Fremont","Boise","Richmond","Baton Rouge","Spokane","Des Moines","Tacoma","San Bernardino","Modesto","Fontana","Santa Clarita","Birmingham","Oxnard","Fayetteville","Moreno Valley","Rochester","Glendale","Huntington Beach","Salt Lake City","Grand Rapids","Amarillo","Yonkers","Aurora","Montgomery","Akron","Little Rock","Huntsville","Augusta","Port St. Lucie","Grand Prairie","Columbus[u]","Tallahassee","Overland Park","Tempe","McKinney","Mobile","Cape Coral","Shreveport","Frisco","Knoxville","Worcester","Brownsville","Vancouver","Fort Lauderdale","Sioux Falls","Ontario","Chattanooga","Providence","Newport News","Rancho Cucamonga","Santa Rosa","Oceanside","Salem","Elk Grove","Garden Grove","Pembroke Pines","Peoria","Eugene","Corona","Cary","Springfield","Fort Collins","Jackson","Alexandria","Hayward","Lancaster","Lakewood","Clarksville","Palmdale","Salinas","Springfield","Hollywood","Pasadena","Sunnyvale","Macon[w]","Kansas City[x]","Pomona","Escondido","Killeen","Naperville","Joliet","Bellevue","Rockford","Savannah","Paterson","Torrance","Bridgeport","McAllen","Mesquite","Syracuse","Midland","Pasadena","Murfreesboro","Miramar","Dayton","Fullerton","Olathe","Orange","Thornton","Roseville","Denton","Waco","Surprise","Carrollton","West Valley City","Charleston","Warren","Hampton","Gainesville","Visalia","Coral Springs","Columbia","Cedar Rapids","Sterling Heights","New Haven","Stamford","Concord","Kent","Santa Clara","Elizabeth","Round Rock","Thousand Oaks","Lafayette[y]","Athens[z]","Topeka","Simi Valley","Fargo","Norman","Columbia","Abilene","Wilmington","Hartford","Victorville","Pearland","Vallejo","Ann Arbor","Berkeley","Allentown","Richardson","Odessa","Arvada","Cambridge","Sugar Land","Beaumont","Lansing","Evansville","Rochester","Independence","Fairfield","Provo","Clearwater","College Station","West Jordan","Carlsbad","El Monte","Murrieta","Temecula","Springfield","Palm Bay","Costa Mesa","Westminster","North Charleston","Miami Gardens","Manchester","High Point","Downey","Clovis","Pompano Beach","Pueblo","Elgin","Lowell","Antioch","West Palm Beach","Peoria","Everett","Ventura","Centennial","Lakeland","Gresham","Richmond","Billings","Inglewood","Broken Arrow","Sandy Springs","Jurupa Valley","Hillsboro","Waterbury","Santa Maria","Boulder","Greeley","Daly City","Meridian","Lewisville","Davie","West Covina","League City","Tyler","Norwalk","San Mateo","Green Bay","Wichita Falls","Sparks","Lakewood","Burbank","Rialto","Allen","El Cajon","Las Cruces","Renton","Davenport","South Bend","Vista","Tuscaloosa","Clinton","Edison","Woodbridge","San Angelo","Kenosha","Vacaville"];
+
+cities.forEach((city)=>{
+	randomTextGenerator.learnRight(city);
+});
+
+console.log(randomTextGenerator.validateRight("New York"));
+// 1
+console.log(randomTextGenerator.validateRight("Saint Louis"));
+// 0.5512820512820513
+console.log(randomTextGenerator.validateRight("Garden City"));
+// 0.5512820512820513
+console.log(randomTextGenerator.validateRight("Ballard"));
+// 0.5
+console.log(randomTextGenerator.validateRight("Hermann"));
+// 0.3611111111111111
+console.log(randomTextGenerator.validateRight("Parsons"));
+// 0.3888888888888889
+console.log(randomTextGenerator.validateRight("Lutts"));
+// 0.42857142857142855
+console.log(randomTextGenerator.validateRight("Erzincan"));
+// 0.2
+console.log(randomTextGenerator.validateRight("Omsk"));
+// 0.26666666666666666
+console.log(randomTextGenerator.validateRight("Wadowice"));
+// 0.26666666666666666
+console.log(randomTextGenerator.validateRight("Sandomierz"));
+// 0.25757575757575757
+console.log(randomTextGenerator.validateRight("Boskovice"));
+// 0.23636363636363636
+```
+
+### validateLeft
+Calculates the resemblance of a given word (right -> left) to the words the generator previously learned.
+#### Syntax
+```js
+randomTextGenerator.validateLeft(text, origins, isRaw);
+```
+- **text** - string or array of strings<br/>
+Text to calculate the resemblance of.<br/>
+- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsLeft)`<br/>
+Specifies the origins allowed in the generation process<br/>
+- **isRaw** - *optional*, boolean, by default `false`<br/>
+If `true` the input is not treated like a word, but rather like a part of a word.<br/><br/>
+Returns string.
+
+### shrink
+An alias for [shrinkBoth](#shrink-both).
+
+### shrinkRight
+Reduces the size of the generator's right weights by removing saved substrings that have less occurrences than the `trust` value. May cause negative effects when the dataset the generator used for learning is small, so use it only when neccessary.
+#### Syntax
+```js
+randomTextGenerator.shrink();
+// or
+randomTextGenerator.shrinkRight();
+```
+Returns **nothing**.
+#### Example
+```js
+let pets=["Daisy", "Cleo", "Chloe", "Angel", "Dusty", "Bailey", "Mittens", "Casey", "Socks", "Snowball", "Simon"];
+for (let pet of pets) randomTextGenerator.learn(pet);
+
+console.log(randomTextGenerator.saveWeightsToJson());
+// {"weightsLeft":{},"weightsRight":{"_default":{"\u0002":{"D":2,"C":3,"A":1,"B":1,"M":1,"S":3},"\u0002D":{"a":1,"u":1},"\u0002Da":{"i":1},"\u0002Dai":{"s":1},"\u0002Dais":{"y":1},"\u0002Daisy":{"\u0003":1},"D":{"a":1,"u":1},"Da":{"i":1},"Dai":{"s":1},"Dais":{"y":1},"Daisy":{"\u0003":1},"a":{"i":2,"s":1,"l":1},"ai":{"s":1,"l":1},"ais":{"y":1},"aisy":{"\u0003":1},"i":{"s":1,"l":1,"t":1,"m":1},"is":{"y":1},"isy":{"\u0003":1},"s":{"y":1,"t":1,"\u0003":2,"e":1},"sy":{"\u0003":1},"y":{"\u0003":4},"\u0002C":{"l":1,"h":1,"a":1},"\u0002Cl":{"e":1},"\u0002Cle":{"o":1},"\u0002Cleo":{"\u0003":1},"C":{"l":1,"h":1,"a":1},"Cl":{"e":1},"Cle":{"o":1},"Cleo":{"\u0003":1},"l":{"e":2,"o":1,"\u0003":2,"l":1},"le":{"o":1,"y":1},"leo":{"\u0003":1},"e":{"o":1,"\u0003":1,"l":1,"y":2,"n":1},"eo":{"\u0003":1},"o":{"\u0003":1,"e":1,"c":1,"w":1,"n":1},"\u0002Ch":{"l":1},"\u0002Chl":{"o":1},"\u0002Chlo":{"e":1},"\u0002Chloe":{"\u0003":1},"Ch":{"l":1},"Chl":{"o":1},"Chlo":{"e":1},"Chloe":{"\u0003":1},"h":{"l":1},"hl":{"o":1},"hlo":{"e":1},"hloe":{"\u0003":1},"lo":{"e":1},"loe":{"\u0003":1},"oe":{"\u0003":1},"\u0002A":{"n":1},"\u0002An":{"g":1},"\u0002Ang":{"e":1},"\u0002Ange":{"l":1},"\u0002Angel":{"\u0003":1},"A":{"n":1},"An":{"g":1},"Ang":{"e":1},"Ange":{"l":1},"Angel":{"\u0003":1},"n":{"g":1,"s":1,"o":1,"\u0003":1},"ng":{"e":1},"nge":{"l":1},"ngel":{"\u0003":1},"g":{"e":1},"ge":{"l":1},"gel":{"\u0003":1},"el":{"\u0003":1},"\u0002Du":{"s":1},"\u0002Dus":{"t":1},"\u0002Dust":{"y":1},"\u0002Dusty":{"\u0003":1},"Du":{"s":1},"Dus":{"t":1},"Dust":{"y":1},"Dusty":{"\u0003":1},"u":{"s":1},"us":{"t":1},"ust":{"y":1},"usty":{"\u0003":1},"st":{"y":1},"sty":{"\u0003":1},"t":{"y":1,"t":1,"e":1},"ty":{"\u0003":1},"\u0002B":{"a":1},"\u0002Ba":{"i":1},"\u0002Bai":{"l":1},"\u0002Bail":{"e":1},"\u0002Baile":{"y":1},"\u0002Bailey":{"\u0003":1},"B":{"a":1},"Ba":{"i":1},"Bai":{"l":1},"Bail":{"e":1},"Baile":{"y":1},"Bailey":{"\u0003":1},"ail":{"e":1},"aile":{"y":1},"ailey":{"\u0003":1},"il":{"e":1},"ile":{"y":1},"iley":{"\u0003":1},"ley":{"\u0003":1},"ey":{"\u0003":2},"\u0002M":{"i":1},"\u0002Mi":{"t":1},"\u0002Mit":{"t":1},"\u0002Mitt":{"e":1},"\u0002Mitte":{"n":1},"\u0002Mitten":{"s":1},"\u0002Mittens":{"\u0003":1},"M":{"i":1},"Mi":{"t":1},"Mit":{"t":1},"Mitt":{"e":1},"Mitte":{"n":1},"Mitten":{"s":1},"Mittens":{"\u0003":1},"it":{"t":1},"itt":{"e":1},"itte":{"n":1},"itten":{"s":1},"ittens":{"\u0003":1},"tt":{"e":1},"tte":{"n":1},"tten":{"s":1},"ttens":{"\u0003":1},"te":{"n":1},"ten":{"s":1},"tens":{"\u0003":1},"en":{"s":1},"ens":{"\u0003":1},"ns":{"\u0003":1},"\u0002Ca":{"s":1},"\u0002Cas":{"e":1},"\u0002Case":{"y":1},"\u0002Casey":{"\u0003":1},"Ca":{"s":1},"Cas":{"e":1},"Case":{"y":1},"Casey":{"\u0003":1},"as":{"e":1},"ase":{"y":1},"asey":{"\u0003":1},"se":{"y":1},"sey":{"\u0003":1},"\u0002S":{"o":1,"n":1,"i":1},"\u0002So":{"c":1},"\u0002Soc":{"k":1},"\u0002Sock":{"s":1},"\u0002Socks":{"\u0003":1},"S":{"o":1,"n":1,"i":1},"So":{"c":1},"Soc":{"k":1},"Sock":{"s":1},"Socks":{"\u0003":1},"oc":{"k":1},"ock":{"s":1},"ocks":{"\u0003":1},"c":{"k":1},"ck":{"s":1},"cks":{"\u0003":1},"k":{"s":1},"ks":{"\u0003":1},"\u0002Sn":{"o":1},"\u0002Sno":{"w":1},"\u0002Snow":{"b":1},"\u0002Snowb":{"a":1},"\u0002Snowba":{"l":1},"\u0002Snowbal":{"l":1},"\u0002Snowball":{"\u0003":1},"Sn":{"o":1},"Sno":{"w":1},"Snow":{"b":1},"Snowb":{"a":1},"Snowba":{"l":1},"Snowbal":{"l":1},"Snowball":{"\u0003":1},"no":{"w":1},"now":{"b":1},"nowb":{"a":1},"nowba":{"l":1},"nowbal":{"l":1},"nowball":{"\u0003":1},"ow":{"b":1},"owb":{"a":1},"owba":{"l":1},"owbal":{"l":1},"owball":{"\u0003":1},"w":{"b":1},"wb":{"a":1},"wba":{"l":1},"wbal":{"l":1},"wball":{"\u0003":1},"b":{"a":1},"ba":{"l":1},"bal":{"l":1},"ball":{"\u0003":1},"al":{"l":1},"all":{"\u0003":1},"ll":{"\u0003":1},"\u0002Si":{"m":1},"\u0002Sim":{"o":1},"\u0002Simo":{"n":1},"\u0002Simon":{"\u0003":1},"Si":{"m":1},"Sim":{"o":1},"Simo":{"n":1},"Simon":{"\u0003":1},"im":{"o":1},"imo":{"n":1},"imon":{"\u0003":1},"m":{"o":1},"mo":{"n":1},"mon":{"\u0003":1},"on":{"\u0003":1}}}}
+randomTextGenerator.shrink(); // Do not use shrink() when the dataset is that small!
+console.log(randomTextGenerator.saveWeightsToJson());
+// {"weightsLeft":{},"weightsRight":{"_default":{"\u0002":{"D":2,"C":3,"A":1,"B":1,"M":1,"S":3},"\u0002D":{"a":1,"u":1},"D":{"a":1,"u":1},"a":{"i":2,"s":1,"l":1},"ai":{"s":1,"l":1},"i":{"s":1,"l":1,"t":1,"m":1},"s":{"y":1,"t":1,"\u0003":2,"e":1},"y":{"\u0003":4},"\u0002C":{"l":1,"h":1,"a":1},"C":{"l":1,"h":1,"a":1},"l":{"e":2,"o":1,"\u0003":2,"l":1},"le":{"o":1,"y":1},"e":{"o":1,"\u0003":1,"l":1,"y":2,"n":1},"o":{"\u0003":1,"e":1,"c":1,"w":1,"n":1},"n":{"g":1,"s":1,"o":1,"\u0003":1},"t":{"y":1,"t":1,"e":1},"ey":{"\u0003":2},"\u0002S":{"o":1,"n":1,"i":1},"S":{"o":1,"n":1,"i":1}}}}
+```
+
+### shrinkRight
+Reduces the size of the generator's right weights by removing saved substrings that have less occurrences than the `trust` value. May cause negative effects when the dataset the generator used for learning is small, so use it only when neccessary.
+#### Syntax
+```js
+randomTextGenerator.shrinkLeft();
+```
+Returns **nothing**.
+
+### shrinkBoth
+Reduces the size of the generator's right and left weights by removing saved substrings that have less occurrences than the `trust` value. May cause negative effects when the dataset the generator used for learning is small, so use it only when neccessary.
+#### Syntax
+```js
+randomTextGenerator.shrinkBoth();
+```
+Returns nothing.
+### saveToJson
+Saves the generator parameters and weights to a json.
+The json can be later loaded using [loadFromJson](#load-from-json).
+#### Syntax
+```js
+randomTextGenerator.saveToJson();
+```
+Returns string.
+#### Example
+```js
+let pets=["Daisy", "Cleo", "Chloe", "Angel", "Dusty", "Bailey", "Mittens", "Casey", "Socks", "Snowball", "Simon"];
+for (let pet of pets) randomTextGenerator.learn(pet);
+
+console.log(randomTextGenerator.saveToJson());
+//{"tries":80,"safeMode":true,"forceCombiningOrigins":false,"minLength":1,"maxLength":400,"deepness":40,"trust":2,"weightsLeft":{},"weightsRight":{"_default":{"\u0002":{"D":2,"C":3,"A":1,"B":1,"M":1,"S":3},"\u0002D":{"a":1,"u":1},"\u0002Da":{"i":1},"\u0002Dai":{"s":1},"\u0002Dais":{"y":1},"\u0002Daisy":{"\u0003":1},"D":{"a":1,"u":1},"Da":{"i":1},"Dai":{"s":1},"Dais":{"y":1},"Daisy":{"\u0003":1},"a":{"i":2,"s":1,"l":1},"ai":{"s":1,"l":1},"ais":{"y":1},"aisy":{"\u0003":1},"i":{"s":1,"l":1,"t":1,"m":1},"is":{"y":1},"isy":{"\u0003":1},"s":{"y":1,"t":1,"\u0003":2,"e":1},"sy":{"\u0003":1},"y":{"\u0003":4},"\u0002C":{"l":1,"h":1,"a":1},"\u0002Cl":{"e":1},"\u0002Cle":{"o":1},"\u0002Cleo":{"\u0003":1},"C":{"l":1,"h":1,"a":1},"Cl":{"e":1},"Cle":{"o":1},"Cleo":{"\u0003":1},"l":{"e":2,"o":1,"\u0003":2,"l":1},"le":{"o":1,"y":1},"leo":{"\u0003":1},"e":{"o":1,"\u0003":1,"l":1,"y":2,"n":1},"eo":{"\u0003":1},"o":{"\u0003":1,"e":1,"c":1,"w":1,"n":1},"\u0002Ch":{"l":1},"\u0002Chl":{"o":1},"\u0002Chlo":{"e":1},"\u0002Chloe":{"\u0003":1},"Ch":{"l":1},"Chl":{"o":1},"Chlo":{"e":1},"Chloe":{"\u0003":1},"h":{"l":1},"hl":{"o":1},"hlo":{"e":1},"hloe":{"\u0003":1},"lo":{"e":1},"loe":{"\u0003":1},"oe":{"\u0003":1},"\u0002A":{"n":1},"\u0002An":{"g":1},"\u0002Ang":{"e":1},"\u0002Ange":{"l":1},"\u0002Angel":{"\u0003":1},"A":{"n":1},"An":{"g":1},"Ang":{"e":1},"Ange":{"l":1},"Angel":{"\u0003":1},"n":{"g":1,"s":1,"o":1,"\u0003":1},"ng":{"e":1},"nge":{"l":1},"ngel":{"\u0003":1},"g":{"e":1},"ge":{"l":1},"gel":{"\u0003":1},"el":{"\u0003":1},"\u0002Du":{"s":1},"\u0002Dus":{"t":1},"\u0002Dust":{"y":1},"\u0002Dusty":{"\u0003":1},"Du":{"s":1},"Dus":{"t":1},"Dust":{"y":1},"Dusty":{"\u0003":1},"u":{"s":1},"us":{"t":1},"ust":{"y":1},"usty":{"\u0003":1},"st":{"y":1},"sty":{"\u0003":1},"t":{"y":1,"t":1,"e":1},"ty":{"\u0003":1},"\u0002B":{"a":1},"\u0002Ba":{"i":1},"\u0002Bai":{"l":1},"\u0002Bail":{"e":1},"\u0002Baile":{"y":1},"\u0002Bailey":{"\u0003":1},"B":{"a":1},"Ba":{"i":1},"Bai":{"l":1},"Bail":{"e":1},"Baile":{"y":1},"Bailey":{"\u0003":1},"ail":{"e":1},"aile":{"y":1},"ailey":{"\u0003":1},"il":{"e":1},"ile":{"y":1},"iley":{"\u0003":1},"ley":{"\u0003":1},"ey":{"\u0003":2},"\u0002M":{"i":1},"\u0002Mi":{"t":1},"\u0002Mit":{"t":1},"\u0002Mitt":{"e":1},"\u0002Mitte":{"n":1},"\u0002Mitten":{"s":1},"\u0002Mittens":{"\u0003":1},"M":{"i":1},"Mi":{"t":1},"Mit":{"t":1},"Mitt":{"e":1},"Mitte":{"n":1},"Mitten":{"s":1},"Mittens":{"\u0003":1},"it":{"t":1},"itt":{"e":1},"itte":{"n":1},"itten":{"s":1},"ittens":{"\u0003":1},"tt":{"e":1},"tte":{"n":1},"tten":{"s":1},"ttens":{"\u0003":1},"te":{"n":1},"ten":{"s":1},"tens":{"\u0003":1},"en":{"s":1},"ens":{"\u0003":1},"ns":{"\u0003":1},"\u0002Ca":{"s":1},"\u0002Cas":{"e":1},"\u0002Case":{"y":1},"\u0002Casey":{"\u0003":1},"Ca":{"s":1},"Cas":{"e":1},"Case":{"y":1},"Casey":{"\u0003":1},"as":{"e":1},"ase":{"y":1},"asey":{"\u0003":1},"se":{"y":1},"sey":{"\u0003":1},"\u0002S":{"o":1,"n":1,"i":1},"\u0002So":{"c":1},"\u0002Soc":{"k":1},"\u0002Sock":{"s":1},"\u0002Socks":{"\u0003":1},"S":{"o":1,"n":1,"i":1},"So":{"c":1},"Soc":{"k":1},"Sock":{"s":1},"Socks":{"\u0003":1},"oc":{"k":1},"ock":{"s":1},"ocks":{"\u0003":1},"c":{"k":1},"ck":{"s":1},"cks":{"\u0003":1},"k":{"s":1},"ks":{"\u0003":1},"\u0002Sn":{"o":1},"\u0002Sno":{"w":1},"\u0002Snow":{"b":1},"\u0002Snowb":{"a":1},"\u0002Snowba":{"l":1},"\u0002Snowbal":{"l":1},"\u0002Snowball":{"\u0003":1},"Sn":{"o":1},"Sno":{"w":1},"Snow":{"b":1},"Snowb":{"a":1},"Snowba":{"l":1},"Snowbal":{"l":1},"Snowball":{"\u0003":1},"no":{"w":1},"now":{"b":1},"nowb":{"a":1},"nowba":{"l":1},"nowbal":{"l":1},"nowball":{"\u0003":1},"ow":{"b":1},"owb":{"a":1},"owba":{"l":1},"owbal":{"l":1},"owball":{"\u0003":1},"w":{"b":1},"wb":{"a":1},"wba":{"l":1},"wbal":{"l":1},"wball":{"\u0003":1},"b":{"a":1},"ba":{"l":1},"bal":{"l":1},"ball":{"\u0003":1},"al":{"l":1},"all":{"\u0003":1},"ll":{"\u0003":1},"\u0002Si":{"m":1},"\u0002Sim":{"o":1},"\u0002Simo":{"n":1},"\u0002Simon":{"\u0003":1},"Si":{"m":1},"Sim":{"o":1},"Simo":{"n":1},"Simon":{"\u0003":1},"im":{"o":1},"imo":{"n":1},"imon":{"\u0003":1},"m":{"o":1},"mo":{"n":1},"mon":{"\u0003":1},"on":{"\u0003":1}}},"splitter":"","startingCharacter":"\u0002","endingCharacter":"\u0003"}
+```
+
+### loadFromJson
+Loads the generator parameters and weights from a json.
+The json can be obtained from [saveToJson](#save-to-json).
+#### Syntax
+```js
+randomTextGenerator.loadFromJson(json);
+```
+- **json** - json string<br/>
+Returns nothing.
+
+### saveWeightsToJson
+Saves the generator weights to a json.
+The json can be later loaded using [loadWeightsFromJson](#load-weights-from-json).
+#### Syntax
+```js
+randomTextGenerator.saveWeightsToJson();
+```
+Returns string.
+
+### loadWeightsFromJson
+Loads the generator weights from a json.
+The json can be obtained from [saveWeightsToJson](#save-weights-to-json).
+#### Syntax
+```js
+randomTextGenerator.loadWeightsFromJson(json);
+```
+```json``` - **string** containing the generator's weights saved in the json format.<br/>
 Returns nothing.
 #### Example
 ```js
-randomTextGenerator.learnBoth("Mark");
-randomTextGenerator.learnBoth("Henry");
-randomTextGenerator.learnBoth("Bob");
-randomTextGenerator.learnBoth("John");
-randomTextGenerator.learnBoth("David");
-randomTextGenerator.learnBoth("James");
+randomTextGenerator.loadWeightsFromJson(String.raw`{"weightsLeft":{},"weightsRight":{"_default":{"1":{"2":1,"3":1,"6":1,"\u0003":2},"2":{"1":1,"2":1},"3":{"3":1,"7":1},"\u0002":{"i":2,"B":1,"k":2,"P":1,"b":1,"E":1,"D":1,"K":1,"p":1,"G":2,"A":1,"M":3,"g":1,"F":1,"Y":1,"d":1},"\u0002i":{"p":1,"c":1},"i":{"p":1,"o":2,"\u0003":2,"c":3,"g":2,"b":1,"a":1," ":1,"r":1,"t":1},"p":{"o":1,"p":1,"a":1,"e":1},"o":{"c":1,"s":4,"o":2,"l":1,"\u0003":1,"n":1,"z":1,"t":1,"b":1},"c":{"a":1,"h":3,"r":2},"a":{"1":1,"k":1,"\u0003":2,"a":2,"r":2,"p":1,"O":1,"m":1,"z":1,"l":1,"x":1},"k":{"\u0003":2,"o":1,"e":1,"u":1},"B":{"o":1,"e":1},"os":{"z":1,"a":1,"w":1,"\u0003":1},"s":{"z":1,"a":1,"y":1,"w":1,"\u0003":1,"t":1,"h":1},"z":{"e":1,"i":1,"\u0003":1,"a":1},"e":{"k":1,"q":1,"i":1,"w":1,"l":1,"x":1,"a":1,"\u0003":1,"r":1},"\u0002k":{"o":1,"u":1},"P":{"s":1,"L":1},"ch":{"a":2,"i":1},"cha":{"a":1,"l":1},"h":{"a":2,"i":1,"e":1},"ha":{"a":1,"l":1},"aa":{"1":1,"\u0003":1},"b":{"o":2,"e":2,"i":1},"bo":{"o":1,"b":1},"oo":{"s":2},"oos":{"w":1,"\u0003":1},"w":{"o":2},"wo":{"o":1,"z":1},"io":{"l":1,"t":1},"l":{"1":1,"e":2,"a":1},"le":{"q":1,"x":1},"ar":{"k":1,"\u0003":1},"r":{"1":1,"k":1,"o":1,"A":1,"t":1,"\u0003":2,"i":1,"s":1,"u":1},"ic":{"h":2,"r":1},"ich":{"i":1,"a":1},"ig":{"o":1,"i":1},"g":{"o":1,".":1,"i":1},"m":{"i":2},"mi":{"c":1," ":1},"cr":{"o":1,"u":1},"u":{"b":1,"r":1,"s":1},"be":{"l":1,"\u0003":1},"\u0002G":{"i":1,"H":1},"G":{"i":1,"H":1},"A":{"l":1,"r":1},"x":{"\u0003":1,"_":1},"\u0002M":{"r":1,"i":2},"M":{"r":1,"i":2},"t":{"u":1,"\u0003":1,"b":1,"c":1},"\u0002Mi":{"a":1,"c":1},"Mi":{"a":1,"c":1}}}}`);
 
-// All the names are going to have "h" somewhere inside.
-for (let i=0; i<4; ++i) {
-	let name=randomTextGenerator.generateBoth("h");
-	console.log(name);
+for (let i=0; i<12; ++i) {
+	console.log(randomTextGenerator.generate());
 }
-// Johnry
-// Bohnry
-// Bohnrk
-// John
-
-for (let i=0; i<4; ++i) {
-	let name=randomTextGenerator.generateBoth("a");
-	console.log(name);
-}
-// Mamen
-// Mames
-// David
-// Mavid
+// Michibooswoze
+// gochalaa
+// Boswoz
+// Gigobooswoos
+// kubobe
+// kushaa
+// Michaa
+// Pshalakosaa
+// Michichi
+// Giotubel1221
+// Pshipppppape
+// kooswoos
 ```
