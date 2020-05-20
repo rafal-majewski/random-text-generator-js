@@ -610,7 +610,7 @@ randomTextGenerator.generateRight(text, origins, isRaw);
 ```
 - **text** - *optional*, string or array of strings<br/>
 Text to predict next character from.<br/>
-- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsRighs)`<br/>
+- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsRight)`<br/>
 Specifies the origins allowed in the generation process.<br/>
 - **isRaw** - *optional*, boolean, by default `false`<br/>
 If `true` the input is not treated like a word, but rather like a part of a word.<br/>
@@ -653,14 +653,14 @@ for (let i=0; i<4; ++i) {
 ```
 
 ### generateLeft
-Generates a new word (left -> right) or lengthens given input.
+Generates a new word (right -> left) or lengthens given input.
 #### Syntax
 ```js
 randomTextGenerator.generateLeft(text, origins, isRaw);
 ```
 - **text** - *optional*, string or array of strings<br/>
 Text to predict next character from.<br/>
-- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsRighs)`<br/>
+- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsLeft)`<br/>
 Specifies the origins allowed in the generation process.<br/>
 - **isRaw** - *optional*, boolean, by default `false`<br/>
 If `true` the input is not treated like a word, but rather like a part of a word.<br/>
@@ -710,7 +710,7 @@ randomTextGenerator.generateBoth(text, origins);
 ```
 - **text** - string or array of strings<br/>
 Text to predict next character from.<br/>
-- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsRighs)`<br/>
+- **origins** - *optional*, array of strings, by default `Object.keys(randomTextGenerator.weightsRight)` combined with `Object.keys(randomTextGenerator.weightsLeft)`<br/>
 Specifies the origins allowed in the generation process.<br/>
 
 Returns string. `randomTextGenerator.splitter` is used automatically to join characters.
