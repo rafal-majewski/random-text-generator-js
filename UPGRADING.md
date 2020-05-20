@@ -6,7 +6,7 @@ const RandomTextGenerator=require("random-text-generator")({legacy: false});
 let randomTextGenerator=new RandomTextGenerator(settings);
 
 // V2 (legacy)
-const createRandomTextGenerator=require("random-text-generator.js");
+const createRandomTextGenerator=require("random-text-generator");
 let randomTextGenerator=createRandomTextGenerator(settings);
 ```
 

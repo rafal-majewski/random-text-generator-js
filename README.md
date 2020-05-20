@@ -12,7 +12,7 @@ With this generator you can generate names for:
 - and anything you want...<br/>
 Moreover, you can generate custom Lorem Ipsums!
 
-Play with it at [random-text-generator.firebaseapp.com](https://random-text-generator.firebaseapp.com/).
+~~Play with it at [random-text-generator.firebaseapp.com](https://random-text-generator.firebaseapp.com/).~~
 
 What the generator does is basically remembering what characters can come after another. While generating it creates and empty string and predicts new characters in a loop.
 
