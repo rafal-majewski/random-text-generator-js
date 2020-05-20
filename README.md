@@ -127,7 +127,7 @@ let randomTextGenerator=new RandomTextGenerator();
 ## Examples
 ### Usernames
 ```js
-const RandomTextGenerator=require("random-text-generator.js")({legacy: false});
+const RandomTextGenerator=require("random-text-generator")({legacy: false});
 
 // Create an instance of the generator with default settings.
 let randomTextGenerator=new RandomTextGenerator();
@@ -198,7 +198,7 @@ for (let i=0; i<12; ++i) {
 
 ### English Lorem Ipsum
 ```js
-const RandomTextGenerator=require("random-text-generator.js")({legacy: false});
+const RandomTextGenerator=require("random-text-generator")({legacy: false});
 
 // Create an instance of the generator. Because you want to generate a text you should set the splitter to " " and use a smaller deepness that the default 40 (to save memory and training time). In this case the deepness says how many of previous words determine the following words.
 let randomTextGenerator=new RandomTextGenerator({splitter: " ", deepness: 8});
