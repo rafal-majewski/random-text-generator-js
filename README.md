@@ -879,7 +879,7 @@ The json can be obtained from [saveToJson](#save-to-json).
 ```js
 randomTextGenerator.loadFromJson(json);
 ```
-- **json** - json string<br/>
+- **json** - json string<br/><br/>
 Returns nothing.
 
 ### saveWeightsToJson
