@@ -1,5 +1,5 @@
 # random-text-generator-js
-Are you looking for a readme for the older version of the generator? If so you can find it [here](README_old.md), but support for this version is going to be removed in an upcoming update, so you should consider [upgrading](UPGRADING.md) it from version 2 to version 3.
+**Are you looking for a readme for the older version of the generator? If so you can find it [here](README_old.md), but support for this version is going to be removed in an upcoming update, so you should consider [upgrading](UPGRADING.md) it from version 2 to version 3.**
 
 With this generator you can generate names for:
 - pets 🐶🐱🐮🐷
