@@ -2,11 +2,11 @@
 Temporarily this is the way to initialize the generator:
 ```js
 // V3
-const RandomTextGenerator=require("random_text_generator_node.js")({legacy: false});
+const RandomTextGenerator=require("random-text-generator")({legacy: false});
 let randomTextGenerator=new RandomTextGenerator(settings);
 
 // V2 (legacy)
-const createRandomTextGenerator=require("random_text_generator_node.js");
+const createRandomTextGenerator=require("random-text-generator.js");
 let randomTextGenerator=createRandomTextGenerator(settings);
 ```
 
