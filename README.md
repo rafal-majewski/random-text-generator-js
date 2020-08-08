@@ -1,6 +1,4 @@
 # random-text-generator-js
-**Are you looking for a readme for the older version of the generator? If so you can find it [here](README_old.md), but support for this version is going to be removed in an upcoming update, so you should consider [upgrading](UPGRADING.md) it from version 2 to version 3.**
-
 With this generator you can generate names for:
 - pets 🐶🐱🐮🐷
 - planets 🌎
@@ -88,16 +86,13 @@ Note: The include syntax is temporary in order to provide legacy support. In the
 ```html
 <script src="https://raw.githubusercontent.com/Rafal-Majewski/random-text-generator-js/master/random_text_generator_browser.js"></script>
 ```
-```js
-const RandomTextGenerator=createRandomTextGenerator({legacy: false});
-```
 
 ### node.js
 ```bash
 npm install random-text-generator
 ```
 ```js
-const RandomTextGenerator=require("random-text-generator")({legacy: false});
+const RandomTextGenerator=require("random-text-generator");
 ```
 
 ## Getting Started
@@ -127,7 +122,7 @@ let randomTextGenerator=new RandomTextGenerator();
 ## Examples
 ### Usernames
 ```js
-const RandomTextGenerator=require("random-text-generator")({legacy: false});
+const RandomTextGenerator=require("random-text-generator");
 
 // Create an instance of the generator with default settings.
 let randomTextGenerator=new RandomTextGenerator();
@@ -159,7 +154,7 @@ for (let i=0; i<12; ++i) {
 
 ### Multiple Origins Generation
 ```js
-const RandomTextGenerator=require("random-text-generator")({legacy: false});
+const RandomTextGenerator=require("random-text-generator");
 
 // Create an instance of the generator with default settings.
 let randomTextGenerator=new RandomTextGenerator();
@@ -198,7 +193,7 @@ for (let i=0; i<12; ++i) {
 
 ### English Lorem Ipsum
 ```js
-const RandomTextGenerator=require("random-text-generator")({legacy: false});
+const RandomTextGenerator=require("random-text-generator");
 
 // Create an instance of the generator. Because you want to generate a text you should set the splitter to " " and use a smaller deepness that the default 40 (to save memory and training time). In this case the deepness says how many of previous words determine the following words.
 let randomTextGenerator=new RandomTextGenerator({splitter: " ", deepness: 8});
