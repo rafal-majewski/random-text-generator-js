@@ -1,100 +1,19 @@
-const generatorSettingsManager={
-	tries: {
-		type: "number",
-		default: 80,
-		validate: (key, value, type)=>{
-			if (typeof value != "number") `Parameter "${key}" has to be type of "${type}".`;
-			if (value <= 0) throw `Parameter "${key}" has to be greater than 0.`;
-			if (!Number.isInteger(value)) throw `Parameter "${key}" has to be an integer.`;
-		},
-	},
-	safeMode: {
-		type: "boolean",
-		default: true,
-		validate: (key, value, type)=>{
-			return true;
-		},
-	},
-	forceCombiningOrigins: {
-		type: "boolean",
-		default: false,
-		validate: (key, value, type)=>{
-			return true;
-		},
-	},
-	minLength: {
-		type: "number",
-		default: 1,
-		validate: (key, value, type)=>{
-			if (typeof value != "number") `Parameter "${key}" has to be type of "${type}".`;
-			if (value <= 0) throw `Parameter "${key}" has to be greater than 0.`;
-			if (!Number.isInteger(value)) throw `Parameter "${key}" has to be an integer.`;
-		},
-	},
-	maxLength: {
-		type: "number",
-		default: 400,
-		validate: (key, value, type)=>{
-			if (typeof value != "number") `Parameter "${key}" has to be type of "${type}".`;
-			if (value <= 0) throw `Parameter "${key}" has to be greater than 0.`;
-			if (!Number.isInteger(value)) throw `Parameter "${key}" has to be an integer.`;
-		},
-	},
-	deepness: {
-		type: "number",
-		default: 40,
-		validate: (key, value, type)=>{
-			if (typeof value != "number") `Parameter "${key}" has to be type of "${type}".`;
-			if (value < 0) throw `Parameter "${key}" has to be greater or equal to 0.`;
-			if (!Number.isInteger(value)) throw `Parameter "${key}" has to be an integer.`;
-		},
-	},
-	trust: {
-		type: "number",
-		default: 2,
-		validate: (key, value, type)=>{
-			if (typeof value != "number") `Parameter "${key}" has to be type of "${type}".`;
-			if (value < 0) throw `Parameter "${key}" has to be greater or equal to 0.`;
-			if (!Number.isInteger(value)) throw `Parameter "${key}" has to be an integer.`;
-		},
-	},
-	weightsLeft: {
-		type: "object",
-		default: {},
-		validate: (key, value, type)=>(true),
-	},
-	weightsRight: {
-		type: "object",
-		default: {},
-		validate: (key, value, type)=>(true),
-	},
-	splitter: {
-		type: "string",
-		default: "",
-		validate: (key, value, type)=>(true),
-	},
-	startingCharacter: {
-		type: "string",
-		default: String.fromCharCode(2),
-		validate: (key, value, type)=>(true),
-	},
-	endingCharacter: {
-		type: "string",
-		default: String.fromCharCode(3),
-		validate: (key, value, type)=>(true),
-	},
-};
-
 function RandomTextGenerator(settings) {
-	if (!settings) settings={};
-	Object.keys(generatorSettingsManager).forEach((key)=>{
-		if (settings[key] != undefined) {
-			generatorSettingsManager[key].validate(key, settings[key], generatorSettingsManager[key].type);
-			this[key]=settings[key];
-		}
-		else this[key]=generatorSettingsManager[key].default;
+	Object.assign(this, {
+		tries: 80,
+		safeMode: true,
+		forceCombiningOrigins: false,
+		minLength: 1,
+		maxLength: 400,
+		deepness: 40,
+		trust: 2,
+		weightsLeft: {},
+		weightsRight: {},
+		splitter: "",
+		startingCharacter: String.fromCharCode(2),
+		endingCharacter: String.fromCharCode(3),
 	});
-	if (this.minLength > this.maxLength) throw "minLength has to be smaller or equal to maxLength";
+	Object.assign(this, settings);
 }
 
 RandomTextGenerator.prototype._exampleIterator=function(example, func) {
